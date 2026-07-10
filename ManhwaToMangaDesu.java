@@ -8,7 +8,7 @@ public class ManhwaToMangaDesu
     private Rating rating = new Rating(); //Anime Rating
     private int volume;
     private String[] episodedescription;
-    private String status;
+    private String status = "Planned";
     private int season;
 
     //Constructor Methods here
@@ -16,6 +16,13 @@ public class ManhwaToMangaDesu
     {
         this.title = title;
         this.studio = studio;
+        ID++;
+    }
+    public ManhwaToMangaDesu(String title, String studio, String status)
+    {
+        this.title = title;
+        this.studio = studio;
+        this.status - status;
         ID++;
     }
     public ManhwaToMangaDesu(String title, String studio, int volume)
