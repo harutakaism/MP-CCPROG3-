@@ -1,6 +1,6 @@
 public class User
 {
-    private static int id = 100000000;
+    private int id = 100000000;
     private String username;
     private Library library = new Library();
     private String password;
