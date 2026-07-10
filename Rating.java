@@ -4,12 +4,25 @@ public class Rating
     private float overallrating;
     private int sum;
     private int recentrate;
+    private String review;
 
 
     //Default Constructor can only be used
-    
+    public Rating()
+    {
+        numberofratings = 0;
+        overallrating = 0.0f;
+        sum = 0;
+        recentrate = 0;
+        review = "";
+    }
+
     //Getter Methods
 
+    public int getNumberOfRatings()
+    {
+        return numberofratings;
+    }
     public float GetOverallrating()
     {
         return overallrating;
@@ -18,7 +31,20 @@ public class Rating
     {
         return recentrate;
     }
-    
+    public String getReview()
+    {
+        return review;
+    }
+    public boolean hasRating()
+    {
+        return numberofratings > 0;
+    }
+    public void setReview(String review)
+    {
+        this.review = review;
+        System.out.println("Review added!");
+    }
+
     //Setter Methods??? 
     
     public void Rate(int UserRate)
