@@ -7,6 +7,7 @@ public class Anime
     private int episodes;
     private String[] episodedescription;
     private String status;
+    private int seasons;
 
     //Constructor Methods here
     public Anime(String title, String studio)
@@ -58,5 +59,9 @@ public class Anime
     public Rating getRating()
     {
         return rating;
+    }
+    public int getSeasons()
+    {
+        return seasons;
     }
 }
