@@ -34,4 +34,50 @@ public class Library
     {
         this.movies.remove(movie);
     }
+    public ArrayList<Anime> getAnimeList()
+    {
+        return animeList;
+    }
+    public ArrayList<ManhwaToMangaDesu> getMangaList()
+    {
+        return mangaList;
+    }
+    public ArrayList<Movies> getMovieList()
+    {
+        return movieList;
+    }
+    public void displayAllEntries()
+    {
+        System.out.println("ALL LIBRARY ENTRIES");
+
+        System.out.println("Anime");
+        if (animeList.isEmpty())
+        {
+            System.out.println("No anime entries.");
+        } else {
+            for (Anime anime : animeList) {
+                anime.DisplayInfo();
+            }
+        }
+
+        System.out.println("Manga/Manhwa/Webtoon");
+        if (mangaList.isEmpty())
+        {
+            System.out.println("No manga/manhwa/webtoon entries.");
+        } else {
+            for (ManhwaToMangaDesu manga : mangaList) {
+                manga.displayInfo();
+            }
+        }
+
+        System.out.println("Movies");
+        if (movieList.isEmpty())
+        {
+            System.out.println("No movie entries.");
+        } else {
+            for (Movies movie : movieList) {
+                movie.displayInfo();
+            }
+        }
+    }
 }
