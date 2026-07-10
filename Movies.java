@@ -1,7 +1,7 @@
 public class Movies
 {
     private final String title;
-    private static int ID = 800000; //Static to generate unique ID
+    private int ID = 800000; //Static to generate unique ID
     private final String studio;
     private Rating rating = new Rating(); //Movie Rating
     private String description;
