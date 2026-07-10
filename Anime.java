@@ -1,9 +1,12 @@
 public class Anime
 {
     private final String title;
-    private static int ID = 100000;
+    private static int ID = 100000; //Static to generate unique ID
     private final String studio;
-    private Rating rating; //Anime Rating
+    private Rating rating = new Rating(); //Anime Rating
+    private int episodes;
+    private String[] episodedescription;
+    private String status;
 
     //Constructor Methods here
     public Anime(String title, String studio)
@@ -12,7 +15,34 @@ public class Anime
         this.studio = studio;
         ID++;
     }
+    public Anime(String title, String studio, int episodes)
+    {
+        this.title = title;
+        this.studio = studio;
+        this.episodes = episodes;
+        ID++;
+    }
+    public Anime(String title, String studio, int episodes, String status)
+    {
+        this.title = title;
+        this.studio = studio;
+        this.episodes = episodes;
+        this.status = status;
+        ID++;
+    }
     //Getter Methods here
+    public String getStatus()
+    {
+        return status;
+    }
+    public String[] getEpisodedescription()
+    {
+        return episodedescription;
+    }
+    public int getEpisodes()
+    {
+        return episodes;
+    }
     public int getID()
     {
         return ID;
@@ -29,5 +59,4 @@ public class Anime
     {
         return rating;
     }
-
 }
