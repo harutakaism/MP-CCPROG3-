@@ -22,7 +22,7 @@ public class ManhwaToMangaDesu
     {
         this.title = title;
         this.studio = studio;
-        this.status - status;
+        this.status = status;
         ID++;
     }
     public ManhwaToMangaDesu(String title, String studio, int volume)
