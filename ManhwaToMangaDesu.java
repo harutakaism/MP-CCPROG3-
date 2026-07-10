@@ -3,7 +3,7 @@ public class ManhwaToMangaDesu
   public class ManhwaToMangaDesu
 {
     private final String title;
-    private static int ID = 100000; //Static to generate unique ID
+    private int ID = 100000; //Static to generate unique ID
     private final String studio;
     private Rating rating = new Rating(); //Anime Rating
     private int volume;
