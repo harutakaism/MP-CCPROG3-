@@ -6,10 +6,17 @@ public class Anime
     private Rating rating = new Rating(); //Anime Rating
     private int episodes;
     private String[] episodedescription;
-    private String status;
-    private int seasons;
+    private String status = "Planned";
+    private int durationinmins;
 
     //Constructor Methods here
+    public Anime(String title, String studio, String status)
+    {
+        this.title = title;
+        this.studio = studio;
+        this.status = status;
+        ID++;
+    }
     public Anime(String title, String studio)
     {
         this.title = title;
@@ -60,8 +67,9 @@ public class Anime
     {
         return rating;
     }
-    public int getSeasons()
+    public int getDurationinmins()
     {
-        return seasons;
+        return durationinmins;
     }
 }
+
