@@ -9,7 +9,8 @@ public class Anime
     private String status = "Planned";
     private int durationinmins;
     private int season;
-    private int[] episodes = new int[season];
+    private int[] episodes;
+    private int sum;
 
     //Constructor Methods here
     public Anime(String title, String studio, String status)
@@ -38,6 +39,10 @@ public class Anime
         this.id = id + incre;
     }
     //Getter Methods here
+    public String getDescription()
+    {
+        return description;
+    }
     public String getStatus()
     {
         return status;
@@ -79,35 +84,26 @@ public class Anime
         System.out.println(title);
         System.out.println("Production Studio: " + studio);
         System.out.println("Rating: " + rating.GetOverallrating());
-        System.out.println("Season: " + season);
+        System.out.println("Seasons: " + season);
+        System.out.println();
         for(int i = 0; i < season; i++)
         {
-            System.out.println("Season " + (i+1) + ": ");
-            System.out.println("Episodes: " + episodes[i]);
+            System.out.println("Season " + (i+1) + ":" + episodes[i] + " Episode/s");
+            sum += episodes[i];
         }
-
+        System.out.println("Total Episodes: " + sum);
+        System.out.println();
         System.out.println("Status: " + status);
         System.out.println("Description: " + description);
         System.out.println("ID: " + id );
     }
-    public void setStatus(String status)
+    public void setStatus(String strNewstatus)
     {
-        if(status.equalsIgnoreCase("Planned"))
-        {
-            this.status = "Planned";
-        }
-        else if(status.equalsIgnoreCase("In Progress"))
-        {
-            this.status = "In Progress";
-        }
-        else if(status.equalsIgnoreCase("Completed"))
-        {
-            this.status = "Completed";
-        }
-        else
-        {
-            System.out.println("Invalid status. Status remains as" + this.status);
-        }
+        this.status = strNewstatus;
+    }
+    public void setDescription(String strNewdescription)
+    {
+        this.description = strNewdescription;
     }
     public void rateMedia(int UserRate)
     {
