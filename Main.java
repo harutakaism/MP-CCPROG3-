@@ -252,7 +252,84 @@ void main()
                     }
                     exist = false;
                     numchoice = 2;
+                    for(i = 0; i < maka.length; i++)
+                    {
+                        maka[i] = 0;
+                    }
+                }
+                if(numchoice == 3)
+                {
+                    System.out.println();
+                    System.out.println("Enter Title: ");
+                    builder[4] = sc.nextLine();
+                    builder[0] = sc.nextLine();
+                    System.out.println("Enter Studio: ");
+                    builder[1] = sc.nextLine();
+                    System.out.println("Status on the Manga/Manhwa?");
+                    System.out.println("[1] Planned | [2] In Progress | [3] Completed");
+                    do {
+                        numchoice = sc.nextInt();
+                        if (numchoice < 1 || numchoice > 3) {
+                            System.out.println("Please Choose a number from 1-3!");
+                        }
+                    }
+                    while (numchoice < 1 || numchoice > 3);
+                    if (numchoice == 1) {
+                        builder[2] = "Planned";
+                    } else if (numchoice == 2) {
+                        builder[2] = "In Progress";
+                    } else {
+                        builder[2] = "Completed";
+                    }
+                    System.out.println("Do you know the number of Volumes/Chapters?");
+                    System.out.println("[1] Yes | [2] No");
+                    do {
+                        numchoice = sc.nextInt();
+                        if (numchoice != 1 && numchoice != 2) {
+                            System.out.println("Error: Invalid Input!");
+                        }
+                    }
+                    while (numchoice != 1 && numchoice != 2);
+                    if(numchoice == 1)
+                    {
+                        System.out.println("Enter number of Volume: ");
+                        do {
+                            builds = sc.nextInt();
+                            if (builds <= 0) {
+                                System.out.println("Invalid Input: Number can't be 0 and below");
+                            }
+                        }
+                        while(builds < 0);
 
+                        for(i = 0; i < builds; i++)
+                        {
+                            System.out.println("Enter Number of Chapters in Volume " + (i+1) + ": " );
+                            maka[i] = sc.nextInt();
+                        }
+
+                        manga = new ManhwaToMangaDesu(builder[0], builder[1], builds, builder[2], maka);
+                    }
+                    else
+                    {
+                        manga = new ManhwaToMangaDesu(builder[0], builder[1], builder[2]);
+                    }
+                    for(i = 0; i < currentuser.getLibrary().getMangaList().size(); i++)
+                    {
+                        if(currentuser.getLibrary().getMangaList().get(i).getStudio().contentEquals(manga.getStudio())
+                                && currentuser.getLibrary().getMangaList().get(i).getTitle().contentEquals(manga.getTitle()))
+                        {
+                            exist = true;
+                            System.out.println("Manga/Manhwa exists in your library!");
+                        }
+
+                    }
+                    if(!exist)
+                    {
+                        System.out.println("Adding Manga/Manhwa : " + manga.getTitle() + " by " + manga.getStudio());
+                        currentuser.getLibrary().addManga(manga);
+                    }
+                    exist = false;
+                    numchoice = 3;
                 }
 
                 break;
