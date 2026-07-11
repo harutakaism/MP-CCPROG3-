@@ -109,4 +109,26 @@ public class Anime
             System.out.println("Invalid status. Status remains as" + this.status);
         }
     }
+    public void rateMedia(int UserRate)
+    {
+        if(status.equals("Completed"))
+        {
+            rating.Rate(UserRate);
+        }
+        else
+        {
+            System.out.println("Only completed entries can be rated.");
+        }
+    }
+    public void addReview(String review)
+    {
+        if(status.equals("Completed"))
+        {
+            rating.setReview(review);
+        }
+        else
+        {
+            System.out.println("Only completed entries can have reviews.");
+        }
+    }
 }
