@@ -91,45 +91,34 @@ public class ManhwaToMangaDesu {
             System.out.println("Description: " + description);
             System.out.println("ID: " + id );
         }
-        public void setStatus(String status)
+    public void setStatus(String strNewstatus)
+    {
+        this.status = strNewstatus;
+    }
+    public void setDescription(String strNewdescription)
+    {
+        this.description = strNewdescription;
+    }
+    public void rateMedia(int UserRate)
+    {
+        if(status.equals("Completed"))
         {
-            if(status.equalsIgnoreCase("Planned"))
-            {
-                this.status = "Planned";
-            }
-            else if(status.equalsIgnoreCase("In Progress"))
-            {
-                this.status = "In Progress";
-            }
-            else if(status.equalsIgnoreCase("Completed"))
-            {
-                this.status = "Completed";
-            }
-            else
-            {
-                System.out.println("Invalid status. Status remains as" + this.status);
-            }
+            rating.Rate(UserRate);
         }
-        public void rateMedia(int UserRate)
+        else
         {
-            if(status.equals("Completed"))
-            {
-                rating.Rate(UserRate);
-            }
-            else
-            {
-                System.out.println("Only completed entries can be rated.");
-            }
+            System.out.println("Only completed entries can be rated.");
         }
-        public void addReview(String review)
+    }
+    public void addReview(String review)
+    {
+        if(status.equals("Completed"))
         {
-            if(status.equals("Completed"))
-            {
-                rating.setReview(review);
-            }
-            else
-            {
-                System.out.println("Only completed entries can have reviews.");
-            }
+            rating.setReview(review);
         }
+        else
+        {
+            System.out.println("Only completed entries can have reviews.");
+        }
+    }
 }
