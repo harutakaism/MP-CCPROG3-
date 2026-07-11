@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Main()
+public class Main
 {
     public static void main(String[] args)
     {
@@ -378,6 +378,7 @@ public class Main()
                     break;
                 case 3:
                     System.out.println("[View Stats]");
+                    currentuser.getLibrary().displaySummary();
                     break;
                 case 4:
                     System.out.println("[Rate Completed Entry]");
