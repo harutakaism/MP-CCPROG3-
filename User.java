@@ -1,6 +1,7 @@
 public class User
 {
-    private static int id = 100000000;
+    private int id = 100000000;
+    private static int incre = 0;
     private String username;
     private Library library = new Library();
     private String password;
@@ -11,7 +12,8 @@ public class User
     {
         this.username = username;
         this.password = password;
-        id++;
+        incre++;
+        this.id = id + incre;
     }
     //Getters here
     public int getId()
@@ -36,4 +38,3 @@ public class User
     }
 
 }
-
