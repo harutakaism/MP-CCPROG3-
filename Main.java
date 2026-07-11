@@ -8,12 +8,17 @@ void main()
     Anime anime;
     Movies movie;
     ManhwaToMangaDesu manga;
+
     String[] builder = new String[5];
     Scanner sc = new Scanner(System.in);
     ArrayList<User> a = new ArrayList<>();
     User currentuser = null;
     boolean loggedin = false;
     boolean exist = false;
+    boolean exists = false;
+    int[] maka = new int[50];
+
+
     System.out.println("Welcome to OtakuVault!");
     while (!loggedin)
     {
@@ -30,7 +35,22 @@ void main()
             tempo1 = sc.next();
             System.out.println("[New Account] Enter Password: ");
             tempo2 = sc.next();
-            a.add(new User(tempo1, tempo2));
+            for(i = 0; i < a.size(); i++)
+            {
+                if(a.get(i).getUsername().contentEquals(tempo1))
+                {
+                    exists = true;
+                }
+            }
+            if(exists)
+            {
+                System.out.println("Username already exists!");
+            }
+            else
+            {
+                a.add(new User(tempo1, tempo2));
+            }
+
         }
         else
         {
@@ -100,11 +120,14 @@ void main()
                 }
                 while (numchoice < 1 || numchoice > 3);
 
-                if (numchoice == 1) {
+                if (numchoice == 1)
+                {
+                    System.out.println();
                     System.out.println("Enter Title: ");
-                    builder[0] = sc.next();
+                    builder[4] = sc.nextLine();
+                    builder[0] = sc.nextLine();
                     System.out.println("Enter Studio: ");
-                    builder[1] = sc.next();
+                    builder[1] = sc.nextLine();
                     System.out.println("Status on the Movie?");
                     System.out.println("[1] Planned | [2] In Progress | [3] Completed");
                     do {
@@ -151,10 +174,87 @@ void main()
                     if(!exist)
                     {
                         System.out.println("Adding Movie : " + movie.getTitle() + " by " + movie.getStudio());
-                        currentuser.getLibrary().addMovie(new Movies(builder[0], builder[1], builder[2]));
+                        currentuser.getLibrary().addMovie(movie);
                      }
                     exist = false;
+                    numchoice = 1;
                 }
+                if(numchoice == 2)
+                {
+                    System.out.println();
+                    System.out.println("Enter Title: ");
+                    builder[4] = sc.nextLine();
+                    builder[0] = sc.nextLine();
+                    System.out.println("Enter Studio: ");
+                    builder[1] = sc.nextLine();
+                    System.out.println("Status on the Anime?");
+                    System.out.println("[1] Planned | [2] In Progress | [3] Completed");
+                    do {
+                        numchoice = sc.nextInt();
+                        if (numchoice < 1 || numchoice > 3) {
+                            System.out.println("Please Choose a number from 1-3!");
+                        }
+                    }
+                    while (numchoice < 1 || numchoice > 3);
+                    if (numchoice == 1) {
+                        builder[2] = "Planned";
+                    } else if (numchoice == 2) {
+                        builder[2] = "In Progress";
+                    } else {
+                        builder[2] = "Completed";
+                    }
+                    System.out.println("Do you know the number of Seasons/Episodes?");
+                    System.out.println("[1] Yes | [2] No");
+                    do {
+                        numchoice = sc.nextInt();
+                        if (numchoice != 1 && numchoice != 2) {
+                            System.out.println("Error: Invalid Input!");
+                        }
+                    }
+                    while (numchoice != 1 && numchoice != 2);
+                    if(numchoice == 1)
+                    {
+                        System.out.println("Enter number of Seasons: ");
+                        do {
+                            builds = sc.nextInt();
+                            if (builds <= 0) {
+                                System.out.println("Invalid Input: Number can't be 0 and below");
+                            }
+                        }
+                        while(builds < 0);
+
+                        for(i = 0; i < builds; i++)
+                        {
+                            System.out.println("Enter Number of Episodes in Season " + (i+1) + ": " );
+                            maka[i] = sc.nextInt();
+                        }
+
+                        anime = new Anime(builder[0], builder[1], maka, builds, builder[2]);
+                    }
+                    else
+                    {
+                        anime = new Anime(builder[0], builder[1], builder[2]);
+                    }
+                    for(i = 0; i < currentuser.getLibrary().getAnimeList().size(); i++)
+                    {
+                        if(currentuser.getLibrary().getAnimeList().get(i).getStudio().contentEquals(anime.getStudio())
+                                && currentuser.getLibrary().getAnimeList().get(i).getTitle().contentEquals(anime.getTitle()))
+                        {
+                            exist = true;
+                            System.out.println("Anime exists in your library!");
+                        }
+
+                    }
+                    if(!exist)
+                    {
+                        System.out.println("Adding Anime : " + anime.getTitle() + " by " + anime.getStudio());
+                        currentuser.getLibrary().addAnime(anime);
+                    }
+                    exist = false;
+                    numchoice = 2;
+
+                }
+
                 break;
             case 3:
                 System.out.println("[View Stats]");
