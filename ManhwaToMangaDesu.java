@@ -1,40 +1,46 @@
 public class ManhwaToMangaDesu {
         private final String title;
-        private int id = 100000; //Static to generate unique ID
+        private int id = 100000;
+        private static int incre = 1;//Static to generate unique ID
         private final String studio;
         private Rating rating = new Rating(); //Anime Rating
         private int volume;
         private String description;
         private String status = "Planned";
-        private int season;
+        private int[] chapter;
 
         //Constructor Methods here
         public ManhwaToMangaDesu(String title, String studio) {
             this.title = title;
             this.studio = studio;
-            id++;
+            incre++;
+            this.id = id + incre;
         }
 
         public ManhwaToMangaDesu(String title, String studio, String status) {
             this.title = title;
             this.studio = studio;
             this.status = status;
-            id++;
+            incre++;
+            this.id = id + incre;
         }
 
         public ManhwaToMangaDesu(String title, String studio, int volume) {
             this.title = title;
             this.studio = studio;
             this.volume = volume;
-            id++;
+            incre++;
+            this.id = id + incre;
         }
 
-        public ManhwaToMangaDesu(String title, String studio, int volume, String status) {
+        public ManhwaToMangaDesu(String title, String studio, int volume, String status, int[] chapter) {
             this.title = title;
             this.studio = studio;
             this.volume = volume;
             this.status = status;
-            id++;
+            this.chapter = chapter;
+            incre++;
+            this.id = id + incre;
         }
 
         //Getter Methods here
@@ -66,8 +72,8 @@ public class ManhwaToMangaDesu {
             return rating;
         }
 
-        public int getSeason() {
-            return season;
+        public int[] getChapter() {
+            return chapter;
         }
 
         public void displayInfo()
@@ -75,8 +81,12 @@ public class ManhwaToMangaDesu {
             System.out.println(title);
             System.out.println("Production Studio: " + studio);
             System.out.println("Rating: " + rating.GetOverallrating());
-            System.out.println("Season: " + season);
             System.out.println("Volumes: " + volume);
+            for(int i = 0; i < volume; i++)
+            {
+                System.out.println("Number of Chapters in Volume " + (i+1) + ": " + chapter[i]);
+            }
+
             System.out.println("Status: " + status);
             System.out.println("Description: " + description);
             System.out.println("ID: " + id );
