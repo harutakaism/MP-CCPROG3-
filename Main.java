@@ -3,71 +3,75 @@ import java.util.Scanner;
 
     public static void main (String[] args)
     {
-        int numchoice, numchoice2 ,builds, i;
-        String tempo1, tempo2;
+        //Objects
         Anime anime;
         Movies movie;
         ManhwaToMangaDesu manga;
 
-        String[] builder = new String[5];
+        //Created Variables (Primitive)
+        int nScanNumberChoice, nScanNumberChoice2nd ,nCapacitor, nIteration;
+        boolean isLoggedin = false;
+        boolean isExistv1 = false;
+        boolean isExistv2 = false;
+
+        //Created Variables (Reference)
+        String strTemp, strTemp2;
+        String[] strConstructBuilder = new String[5];
         Scanner sc = new Scanner(System.in);
-        ArrayList<User> a = new ArrayList<>();
+        ArrayList<User> arrUserRegistered = new ArrayList<>();
         User currentuser = null;
-        boolean loggedin = false;
-        boolean exist = false;
-        boolean exists = false;
-        int[] maka = new int[100];
+        int[] arrInts = new int[100];
 
 
         System.out.println("Welcome to OtakuVault!");
-        while (!loggedin)
+        while (!isLoggedin)
         {
             System.out.println("[1] Log In | [2] Create Account");
             do
             {
-                numchoice = sc.nextInt();
+                nScanNumberChoice = sc.nextInt();
             }
-            while (numchoice != 1 && numchoice != 2);
+            while (nScanNumberChoice != 1 && nScanNumberChoice != 2);
 
-            if (numchoice == 2)
+            if (nScanNumberChoice == 2)
             {
                 System.out.println("[New Account] Enter Username: ");
-                tempo1 = sc.next();
+                strTemp = sc.next();
                 System.out.println("[New Account] Enter Password: ");
-                tempo2 = sc.next();
-                for(i = 0; i < a.size(); i++)
+                strTemp2 = sc.next();
+                for(nIteration = 0; nIteration < arrUserRegistered.size(); nIteration++)
                 {
-                    if(a.get(i).getUsername().contentEquals(tempo1))
+                    if(arrUserRegistered.get(nIteration).getUsername().contentEquals(strTemp))
                     {
-                        exists = true;
+                        isExistv2 = true;
                     }
                 }
-                if(exists)
+                if(isExistv2)
                 {
                     System.out.println("Username already exists!");
                 }
                 else
                 {
-                    a.add(new User(tempo1, tempo2));
+                    arrUserRegistered.add(new User(strTemp, strTemp2));
                 }
 
             }
             else
             {
                 System.out.println("[Log In] Enter Username: ");
-                tempo1 = sc.next();
+                strTemp = sc.next();
                 System.out.println("[Log In] Enter Password: ");
-                tempo2 = sc.next();
-                for (User user : a)
+                strTemp2 = sc.next();
+                for (User user : arrUserRegistered)
                 {
-                    if (user.getUsername().contentEquals(tempo1) && user.getPassword().contentEquals(tempo2))
+                    if (user.getUsername().contentEquals(strTemp) && user.getPassword().contentEquals(strTemp2))
                     {
                         currentuser = user;
-                        loggedin = true;
+                        isLoggedin = true;
                         System.out.println("Successful login, welcome " + currentuser.getUsername() + "!");
                     }
                 }
-                if(!loggedin)
+                if(!isLoggedin)
                 {
                     System.out.println("Login Failed: Username/Password does not match.");
                 }
@@ -81,10 +85,10 @@ import java.util.Scanner;
             System.out.print("[4] Rate Completed Entry | [5] Modify a Media | [6] Log Out");
             do
             {
-                numchoice = sc.nextInt();
+                nScanNumberChoice = sc.nextInt();
             }
-            while (numchoice < 1 || numchoice > 6);
-            switch (numchoice) {
+            while (nScanNumberChoice < 1 || nScanNumberChoice > 6);
+            switch (nScanNumberChoice) {
                 case 1:
                     do
                     {
@@ -92,62 +96,62 @@ import java.util.Scanner;
                     System.out.println("[1] View All | [2] View by Movies | [3] View by Anime | [4] View by Manga/Manhwa");
                     System.out.println("[5] View by Completion | [6] Back");
                     do {
-                        numchoice = sc.nextInt();
-                        if(numchoice < 1 || numchoice > 6)
+                        nScanNumberChoice = sc.nextInt();
+                        if(nScanNumberChoice < 1 || nScanNumberChoice > 6)
                         {
                             System.out.println("Invalid Input: Choose a Number within 1-6!");
                         }
                     }
-                    while (numchoice < 1 || numchoice > 6);
-                        if (numchoice == 1) {
+                    while (nScanNumberChoice < 1 || nScanNumberChoice > 6);
+                        if (nScanNumberChoice == 1) {
                             currentuser.getLibrary().displayAllEntries();
                         }
-                        if (numchoice == 2) {
+                        if (nScanNumberChoice == 2) {
                             currentuser.getLibrary().displayMovies();
                         }
-                        if (numchoice == 3) {
+                        if (nScanNumberChoice == 3) {
                             currentuser.getLibrary().displayAnime();
                         }
-                        if (numchoice == 4) {
+                        if (nScanNumberChoice == 4) {
                             currentuser.getLibrary().displayManga();
                         }
-                        if (numchoice == 5) {
+                        if (nScanNumberChoice == 5) {
                             System.out.println("[Select Status to Filter by]");
                             System.out.println("[1] Planned | [2] In Progress | [3] Completed");
                             do {
-                                numchoice = sc.nextInt();
-                                if (numchoice < 1 || numchoice > 3) {
+                                nScanNumberChoice = sc.nextInt();
+                                if (nScanNumberChoice < 1 || nScanNumberChoice > 3) {
                                     System.out.println("Please Choose a number from 1-3!");
                                 }
                             }
-                            while (numchoice < 1 || numchoice > 3);
-                            if (numchoice == 1) {
-                                builder[2] = "Planned";
-                            } else if (numchoice == 2) {
-                                builder[2] = "In Progress";
+                            while (nScanNumberChoice < 1 || nScanNumberChoice > 3);
+                            if (nScanNumberChoice == 1) {
+                                strConstructBuilder[2] = "Planned";
+                            } else if (nScanNumberChoice == 2) {
+                                strConstructBuilder[2] = "In Progress";
                             } else {
-                                builder[2] = "Completed";
+                                strConstructBuilder[2] = "Completed";
                             }
-                            for (i = 0; i < currentuser.getLibrary().getMovieList().size(); i++) {
-                                if (currentuser.getLibrary().getMovieList().get(i).getStatus().contentEquals(builder[2])) {
-                                    currentuser.getLibrary().getMovieList().get(i).displayInfo();
+                            for (nIteration = 0; nIteration < currentuser.getLibrary().getMovieList().size(); nIteration++) {
+                                if (currentuser.getLibrary().getMovieList().get(nIteration).getStatus().contentEquals(strConstructBuilder[2])) {
+                                    currentuser.getLibrary().getMovieList().get(nIteration).displayInfo();
                                 }
                             }
-                            for (i = 0; i < currentuser.getLibrary().getAnimeList().size(); i++) {
-                                if (currentuser.getLibrary().getAnimeList().get(i).getStatus().contentEquals(builder[2])) {
-                                    currentuser.getLibrary().getAnimeList().get(i).displayInfo();
+                            for (nIteration = 0; nIteration < currentuser.getLibrary().getAnimeList().size(); nIteration++) {
+                                if (currentuser.getLibrary().getAnimeList().get(nIteration).getStatus().contentEquals(strConstructBuilder[2])) {
+                                    currentuser.getLibrary().getAnimeList().get(nIteration).displayInfo();
                                 }
                             }
-                            for (i = 0; i < currentuser.getLibrary().getMangaList().size(); i++) {
-                                if (currentuser.getLibrary().getMangaList().get(i).getStatus().contentEquals(builder[2])) {
-                                    currentuser.getLibrary().getMangaList().get(i).displayInfo();
+                            for (nIteration = 0; nIteration < currentuser.getLibrary().getMangaList().size(); nIteration++) {
+                                if (currentuser.getLibrary().getMangaList().get(nIteration).getStatus().contentEquals(strConstructBuilder[2])) {
+                                    currentuser.getLibrary().getMangaList().get(nIteration).displayInfo();
                                 }
                             }
                             System.out.println();
                             System.out.println("(Anddd... that's pretty much it!)");
                         }
                     }
-                    while (numchoice != 6);
+                    while (nScanNumberChoice != 6);
 
                     break;
                 case 2:
@@ -155,196 +159,196 @@ import java.util.Scanner;
                     System.out.println("[1] Movie | [2] Anime | [3] Manga");
                     System.out.println("Enter Type: ");
                     do {
-                        numchoice = sc.nextInt();
+                        nScanNumberChoice = sc.nextInt();
                     }
-                    while (numchoice < 1 || numchoice > 3);
+                    while (nScanNumberChoice < 1 || nScanNumberChoice > 3);
 
-                    if (numchoice == 1) {
+                    if (nScanNumberChoice == 1) {
                         System.out.println();
                         System.out.println("Enter Title: ");
-                        builder[4] = sc.nextLine();
-                        builder[0] = sc.nextLine();
+                        strConstructBuilder[4] = sc.nextLine();
+                        strConstructBuilder[0] = sc.nextLine();
                         System.out.println("Enter Studio: ");
-                        builder[1] = sc.nextLine();
+                        strConstructBuilder[1] = sc.nextLine();
                         System.out.println("Status on the Movie?");
                         System.out.println("[1] Planned | [2] In Progress | [3] Completed");
                         do {
-                            numchoice = sc.nextInt();
-                            if (numchoice < 1 || numchoice > 3) {
+                            nScanNumberChoice = sc.nextInt();
+                            if (nScanNumberChoice < 1 || nScanNumberChoice > 3) {
                                 System.out.println("Please Choose a number from 1-3!");
                             }
                         }
-                        while (numchoice < 1 || numchoice > 3);
-                        if (numchoice == 1) {
-                            builder[2] = "Planned";
-                        } else if (numchoice == 2) {
-                            builder[2] = "In Progress";
+                        while (nScanNumberChoice < 1 || nScanNumberChoice > 3);
+                        if (nScanNumberChoice == 1) {
+                            strConstructBuilder[2] = "Planned";
+                        } else if (nScanNumberChoice == 2) {
+                            strConstructBuilder[2] = "In Progress";
                         } else {
-                            builder[2] = "Completed";
+                            strConstructBuilder[2] = "Completed";
                         }
                         System.out.println("Do you know the Duration of the Movie?");
                         System.out.println("[1] Yes | [2] No");
                         do {
-                            numchoice = sc.nextInt();
-                            if (numchoice != 1 && numchoice != 2) {
+                            nScanNumberChoice = sc.nextInt();
+                            if (nScanNumberChoice != 1 && nScanNumberChoice != 2) {
                                 System.out.println("Error: Invalid Input!");
                             }
                         }
-                        while (numchoice != 1 && numchoice != 2);
-                        if (numchoice == 1) {
+                        while (nScanNumberChoice != 1 && nScanNumberChoice != 2);
+                        if (nScanNumberChoice == 1) {
                             System.out.println("Enter the Duration of the Movie (in Minutes Form)");
-                            builds = sc.nextInt();
-                            movie = new Movies(builder[0], builder[1], builds, builder[2]);
+                            nCapacitor = sc.nextInt();
+                            movie = new Movies(strConstructBuilder[0], strConstructBuilder[1], nCapacitor, strConstructBuilder[2]);
                         } else {
-                            movie = new Movies(builder[0], builder[1], builder[2]);
+                            movie = new Movies(strConstructBuilder[0], strConstructBuilder[1], strConstructBuilder[2]);
                         }
 
-                        for (i = 0; i < currentuser.getLibrary().getMovieList().size(); i++) {
-                            if (currentuser.getLibrary().getMovieList().get(i).getStudio().contentEquals(movie.getStudio())
-                                    && currentuser.getLibrary().getMovieList().get(i).getTitle().contentEquals(movie.getTitle())) {
-                                exist = true;
+                        for (nIteration = 0; nIteration < currentuser.getLibrary().getMovieList().size(); nIteration++) {
+                            if (currentuser.getLibrary().getMovieList().get(nIteration).getStudio().contentEquals(movie.getStudio())
+                                    && currentuser.getLibrary().getMovieList().get(nIteration).getTitle().contentEquals(movie.getTitle())) {
+                                isExistv1 = true;
                                 System.out.println("Movie exists in your library!");
                             }
 
                         }
-                        if (!exist) {
+                        if (!isExistv1) {
                             System.out.println("Adding Movie : " + movie.getTitle() + " by " + movie.getStudio());
                             currentuser.getLibrary().addMovie(movie);
                         }
-                        exist = false;
-                        numchoice = 1;
+                        isExistv1 = false;
+                        nScanNumberChoice = 1;
                     }
-                    if (numchoice == 2) {
+                    if (nScanNumberChoice == 2) {
                         System.out.println();
                         System.out.println("Enter Title: ");
-                        builder[4] = sc.nextLine();
-                        builder[0] = sc.nextLine();
+                        strConstructBuilder[4] = sc.nextLine();
+                        strConstructBuilder[0] = sc.nextLine();
                         System.out.println("Enter Studio: ");
-                        builder[1] = sc.nextLine();
+                        strConstructBuilder[1] = sc.nextLine();
                         System.out.println("Status on the Anime?");
                         System.out.println("[1] Planned | [2] In Progress | [3] Completed");
                         do {
-                            numchoice = sc.nextInt();
-                            if (numchoice < 1 || numchoice > 3) {
+                            nScanNumberChoice = sc.nextInt();
+                            if (nScanNumberChoice < 1 || nScanNumberChoice > 3) {
                                 System.out.println("Please Choose a number from 1-3!");
                             }
                         }
-                        while (numchoice < 1 || numchoice > 3);
-                        if (numchoice == 1) {
-                            builder[2] = "Planned";
-                        } else if (numchoice == 2) {
-                            builder[2] = "In Progress";
+                        while (nScanNumberChoice < 1 || nScanNumberChoice > 3);
+                        if (nScanNumberChoice == 1) {
+                            strConstructBuilder[2] = "Planned";
+                        } else if (nScanNumberChoice == 2) {
+                            strConstructBuilder[2] = "In Progress";
                         } else {
-                            builder[2] = "Completed";
+                            strConstructBuilder[2] = "Completed";
                         }
                         System.out.println("Do you know the number of Seasons/Episodes?");
                         System.out.println("[1] Yes | [2] No");
                         do {
-                            numchoice = sc.nextInt();
-                            if (numchoice != 1 && numchoice != 2) {
+                            nScanNumberChoice = sc.nextInt();
+                            if (nScanNumberChoice != 1 && nScanNumberChoice != 2) {
                                 System.out.println("Error: Invalid Input!");
                             }
                         }
-                        while (numchoice != 1 && numchoice != 2);
-                        if (numchoice == 1) {
+                        while (nScanNumberChoice != 1 && nScanNumberChoice != 2);
+                        if (nScanNumberChoice == 1) {
                             System.out.println("Enter number of Seasons: ");
                             do {
-                                builds = sc.nextInt();
-                                if (builds <= 0) {
+                                nCapacitor = sc.nextInt();
+                                if (nCapacitor <= 0) {
                                     System.out.println("Invalid Input: Number can't be 0 and below");
                                 }
                             }
-                            while (builds < 0);
+                            while (nCapacitor < 0);
 
-                            for (i = 0; i < builds; i++) {
-                                System.out.println("Enter Number of Episodes in Season " + (i + 1) + ": ");
-                                maka[i] = sc.nextInt();
+                            for (nIteration = 0; nIteration < nCapacitor; nIteration++) {
+                                System.out.println("Enter Number of Episodes in Season " + (nIteration + 1) + ": ");
+                                arrInts[nIteration] = sc.nextInt();
                             }
 
-                            anime = new Anime(builder[0], builder[1], maka, builds, builder[2]);
+                            anime = new Anime(strConstructBuilder[0], strConstructBuilder[1], arrInts, nCapacitor, strConstructBuilder[2]);
                         } else {
-                            anime = new Anime(builder[0], builder[1], builder[2]);
+                            anime = new Anime(strConstructBuilder[0], strConstructBuilder[1], strConstructBuilder[2]);
                         }
-                        for (i = 0; i < currentuser.getLibrary().getAnimeList().size(); i++) {
-                            if (currentuser.getLibrary().getAnimeList().get(i).getStudio().contentEquals(anime.getStudio())
-                                    && currentuser.getLibrary().getAnimeList().get(i).getTitle().contentEquals(anime.getTitle())) {
-                                exist = true;
+                        for (nIteration = 0; nIteration < currentuser.getLibrary().getAnimeList().size(); nIteration++) {
+                            if (currentuser.getLibrary().getAnimeList().get(nIteration).getStudio().contentEquals(anime.getStudio())
+                                    && currentuser.getLibrary().getAnimeList().get(nIteration).getTitle().contentEquals(anime.getTitle())) {
+                                isExistv1 = true;
                                 System.out.println("Anime exists in your library!");
                             }
 
                         }
-                        if (!exist) {
+                        if (!isExistv1) {
                             System.out.println("Adding Anime : " + anime.getTitle() + " by " + anime.getStudio());
                             currentuser.getLibrary().addAnime(anime);
                         }
-                        exist = false;
-                        numchoice = 2;
+                        isExistv1 = false;
+                        nScanNumberChoice = 2;
                     }
-                    if (numchoice == 3) {
+                    if (nScanNumberChoice == 3) {
                         System.out.println();
                         System.out.println("Enter Title: ");
-                        builder[4] = sc.nextLine();
-                        builder[0] = sc.nextLine();
+                        strConstructBuilder[4] = sc.nextLine();
+                        strConstructBuilder[0] = sc.nextLine();
                         System.out.println("Enter Studio: ");
-                        builder[1] = sc.nextLine();
+                        strConstructBuilder[1] = sc.nextLine();
                         System.out.println("Status on the Manga/Manhwa?");
                         System.out.println("[1] Planned | [2] In Progress | [3] Completed");
                         do {
-                            numchoice = sc.nextInt();
-                            if (numchoice < 1 || numchoice > 3) {
+                            nScanNumberChoice = sc.nextInt();
+                            if (nScanNumberChoice < 1 || nScanNumberChoice > 3) {
                                 System.out.println("Please Choose a number from 1-3!");
                             }
                         }
-                        while (numchoice < 1 || numchoice > 3);
-                        if (numchoice == 1) {
-                            builder[2] = "Planned";
-                        } else if (numchoice == 2) {
-                            builder[2] = "In Progress";
+                        while (nScanNumberChoice < 1 || nScanNumberChoice > 3);
+                        if (nScanNumberChoice == 1) {
+                            strConstructBuilder[2] = "Planned";
+                        } else if (nScanNumberChoice == 2) {
+                            strConstructBuilder[2] = "In Progress";
                         } else {
-                            builder[2] = "Completed";
+                            strConstructBuilder[2] = "Completed";
                         }
                         System.out.println("Do you know the number of Volumes/Chapters?");
                         System.out.println("[1] Yes | [2] No");
                         do {
-                            numchoice = sc.nextInt();
-                            if (numchoice != 1 && numchoice != 2) {
+                            nScanNumberChoice = sc.nextInt();
+                            if (nScanNumberChoice != 1 && nScanNumberChoice != 2) {
                                 System.out.println("Error: Invalid Input!");
                             }
                         }
-                        while (numchoice != 1 && numchoice != 2);
-                        if (numchoice == 1) {
+                        while (nScanNumberChoice != 1 && nScanNumberChoice != 2);
+                        if (nScanNumberChoice == 1) {
                             System.out.println("Enter number of Volume: ");
                             do {
-                                builds = sc.nextInt();
-                                if (builds <= 0) {
+                                nCapacitor = sc.nextInt();
+                                if (nCapacitor <= 0) {
                                     System.out.println("Invalid Input: Number can't be 0 and below");
                                 }
                             }
-                            while (builds <= 0);
+                            while (nCapacitor <= 0);
 
-                            for (i = 0; i < builds; i++) {
-                                System.out.println("Enter Number of Chapters in Volume " + (i + 1) + ": ");
-                                maka[i] = sc.nextInt();
+                            for (nIteration = 0; nIteration < nCapacitor; nIteration++) {
+                                System.out.println("Enter Number of Chapters in Volume " + (nIteration + 1) + ": ");
+                                arrInts[nIteration] = sc.nextInt();
                             }
 
-                            manga = new ManhwaToMangaDesu(builder[0], builder[1], builds, builder[2], maka);
+                            manga = new ManhwaToMangaDesu(strConstructBuilder[0], strConstructBuilder[1], nCapacitor, strConstructBuilder[2], arrInts);
                         } else {
-                            manga = new ManhwaToMangaDesu(builder[0], builder[1], builder[2]);
+                            manga = new ManhwaToMangaDesu(strConstructBuilder[0], strConstructBuilder[1], strConstructBuilder[2]);
                         }
-                        for (i = 0; i < currentuser.getLibrary().getMangaList().size(); i++) {
-                            if (currentuser.getLibrary().getMangaList().get(i).getStudio().contentEquals(manga.getStudio())
-                                    && currentuser.getLibrary().getMangaList().get(i).getTitle().contentEquals(manga.getTitle())) {
-                                exist = true;
+                        for (nIteration = 0; nIteration < currentuser.getLibrary().getMangaList().size(); nIteration++) {
+                            if (currentuser.getLibrary().getMangaList().get(nIteration).getStudio().contentEquals(manga.getStudio())
+                                    && currentuser.getLibrary().getMangaList().get(nIteration).getTitle().contentEquals(manga.getTitle())) {
+                                isExistv1 = true;
                                 System.out.println("Manga/Manhwa exists in your library!");
                             }
 
                         }
-                        if (!exist) {
+                        if (!isExistv1) {
                             System.out.println("Adding Manga/Manhwa : " + manga.getTitle() + " by " + manga.getStudio());
                             currentuser.getLibrary().addManga(manga);
                         }
-                        exist = false;
-                        numchoice = 3;
+                        isExistv1 = false;
+                        nScanNumberChoice = 3;
                     }
 
                     break;
@@ -359,9 +363,9 @@ import java.util.Scanner;
 
                     do
                     {
-                        numchoice = sc.nextInt();
+                        nScanNumberChoice = sc.nextInt();
                     }
-                    while(numchoice < 1 || numchoice > 3);
+                    while(nScanNumberChoice < 1 || nScanNumberChoice > 3);
 
                     System.out.println("Enter ID of entry to rate: ");
                     int searchID = sc.nextInt();
@@ -374,7 +378,7 @@ import java.util.Scanner;
                     System.out.println("Enter review: ");
                     String userReview = sc.nextLine();
 
-                    if(numchoice == 1)
+                    if(nScanNumberChoice == 1)
                     {
                         Movies selectedMovie = currentuser.getLibrary().findMovieByID(searchID);
 
@@ -388,7 +392,7 @@ import java.util.Scanner;
                             selectedMovie.addReview(userReview);
                         }
                     }
-                    else if(numchoice == 2)
+                    else if(nScanNumberChoice == 2)
                     {
                         Anime selectedAnime = currentuser.getLibrary().findAnimeByID(searchID);
 
@@ -402,7 +406,7 @@ import java.util.Scanner;
                             selectedAnime.addReview(userReview);
                         }
                     }
-                    else if(numchoice == 3)
+                    else if(nScanNumberChoice == 3)
                     {
                         ManhwaToMangaDesu selectedManga = currentuser.getLibrary().findMangaByID(searchID);
 
@@ -419,118 +423,118 @@ import java.util.Scanner;
                     break;
                 case 5:
                     System.out.println("[1] Remove Media | [2] Change Status");
-                    numchoice = sc.nextInt();
-                    if (numchoice == 1) {
+                    nScanNumberChoice = sc.nextInt();
+                    if (nScanNumberChoice == 1) {
                         System.out.println("[1] Remove a Movie | [2] Remove an Anime | [3] Remove a Manga/Manhwa");
-                        numchoice = sc.nextInt();
-                        if (numchoice == 1) {
+                        nScanNumberChoice = sc.nextInt();
+                        if (nScanNumberChoice == 1) {
                             if (currentuser.getLibrary().getMovieList().isEmpty()) {
                                 System.out.println("Nothing to remove...");
                             } else {
-                                for (i = 0; i < currentuser.getLibrary().getMovieList().size(); i++) {
-                                    System.out.println("[" + (i + 1) + "] " +
-                                            currentuser.getLibrary().getMovieList().get(i).getTitle() + " - " +
-                                            currentuser.getLibrary().getMovieList().get(i).getStudio());
+                                for (nIteration = 0; nIteration < currentuser.getLibrary().getMovieList().size(); nIteration++) {
+                                    System.out.println("[" + (nIteration + 1) + "] " +
+                                            currentuser.getLibrary().getMovieList().get(nIteration).getTitle() + " - " +
+                                            currentuser.getLibrary().getMovieList().get(nIteration).getStudio());
 
                                 }
                                 System.out.println("Enter number of Movie to Delete: ");
                                 do {
                                     {
-                                        numchoice = sc.nextInt();
-                                        if (numchoice < 1 || numchoice > currentuser.getLibrary().getMovieList().size()) {
+                                        nScanNumberChoice = sc.nextInt();
+                                        if (nScanNumberChoice < 1 || nScanNumberChoice > currentuser.getLibrary().getMovieList().size()) {
                                             System.out.println("Error: Input out of bounds");
                                         }
                                     }
                                 }
-                                while (numchoice < 1 || numchoice > currentuser.getLibrary().getMovieList().size());
+                                while (nScanNumberChoice < 1 || nScanNumberChoice > currentuser.getLibrary().getMovieList().size());
                                 System.out.println("You will be deleting: " +
-                                        currentuser.getLibrary().getMovieList().get(numchoice - 1).getTitle() + " - " +
-                                        currentuser.getLibrary().getMovieList().get(numchoice - 1).getStudio() + ", Continue?");
+                                        currentuser.getLibrary().getMovieList().get(nScanNumberChoice - 1).getTitle() + " - " +
+                                        currentuser.getLibrary().getMovieList().get(nScanNumberChoice - 1).getStudio() + ", Continue?");
                                 System.out.println("[1] Yes | [2] No");
                                 do {
-                                    numchoice2 = sc.nextInt();
-                                    if (numchoice2 != 1 && numchoice2 != 2) {
+                                    nScanNumberChoice2nd = sc.nextInt();
+                                    if (nScanNumberChoice2nd != 1 && nScanNumberChoice2nd != 2) {
                                         System.out.println("Error: Invalid Input!");
                                     }
                                 }
-                                while (numchoice2 != 1 && numchoice2 != 2);
-                                currentuser.getLibrary().getMovieList().remove(numchoice - 1);
+                                while (nScanNumberChoice2nd != 1 && nScanNumberChoice2nd != 2);
+                                currentuser.getLibrary().getMovieList().remove(nScanNumberChoice - 1);
                                 System.out.println("Successfully Deleted.");
-                                numchoice = 1;
+                                nScanNumberChoice = 1;
                             }
 
                         }
-                        if (numchoice == 2) {
+                        if (nScanNumberChoice == 2) {
                             if (currentuser.getLibrary().getAnimeList().isEmpty()) {
                                 System.out.println("Nothing to remove...");
                             } else {
-                                for (i = 0; i < currentuser.getLibrary().getAnimeList().size(); i++) {
-                                    System.out.println("[" + (i + 1) + "] " +
-                                            currentuser.getLibrary().getAnimeList().get(i).getTitle() + " - " +
-                                            currentuser.getLibrary().getAnimeList().get(i).getStudio());
+                                for (nIteration = 0; nIteration < currentuser.getLibrary().getAnimeList().size(); nIteration++) {
+                                    System.out.println("[" + (nIteration + 1) + "] " +
+                                            currentuser.getLibrary().getAnimeList().get(nIteration).getTitle() + " - " +
+                                            currentuser.getLibrary().getAnimeList().get(nIteration).getStudio());
 
                                 }
                                 System.out.println("Enter number of Anime to Delete: ");
                                 do {
                                     {
-                                        numchoice = sc.nextInt();
-                                        if (numchoice < 1 || numchoice > currentuser.getLibrary().getAnimeList().size()) {
+                                        nScanNumberChoice = sc.nextInt();
+                                        if (nScanNumberChoice < 1 || nScanNumberChoice > currentuser.getLibrary().getAnimeList().size()) {
                                             System.out.println("Error: Input out of bounds");
                                         }
                                     }
                                 }
-                                while (numchoice < 1 || numchoice > currentuser.getLibrary().getAnimeList().size());
+                                while (nScanNumberChoice < 1 || nScanNumberChoice > currentuser.getLibrary().getAnimeList().size());
                                 System.out.println("You will be deleting: " +
-                                        currentuser.getLibrary().getAnimeList().get(numchoice - 1).getTitle() + " - " +
-                                        currentuser.getLibrary().getAnimeList().get(numchoice - 1).getStudio() + ", Continue?");
+                                        currentuser.getLibrary().getAnimeList().get(nScanNumberChoice - 1).getTitle() + " - " +
+                                        currentuser.getLibrary().getAnimeList().get(nScanNumberChoice - 1).getStudio() + ", Continue?");
                                 System.out.println("[1] Yes | [2] No");
                                 do {
-                                    numchoice2 = sc.nextInt();
-                                    if (numchoice2 != 1 && numchoice2 != 2) {
+                                    nScanNumberChoice2nd = sc.nextInt();
+                                    if (nScanNumberChoice2nd != 1 && nScanNumberChoice2nd != 2) {
                                         System.out.println("Error: Invalid Input!");
                                     }
                                 }
-                                while (numchoice2 != 1 && numchoice2 != 2);
-                                currentuser.getLibrary().getAnimeList().remove(numchoice - 1);
+                                while (nScanNumberChoice2nd != 1 && nScanNumberChoice2nd != 2);
+                                currentuser.getLibrary().getAnimeList().remove(nScanNumberChoice - 1);
                                 System.out.println("Successfully Deleted.");
-                                numchoice = 1;
+                                nScanNumberChoice = 1;
                             }
 
 
                         }
-                        if (numchoice == 3) {
+                        if (nScanNumberChoice == 3) {
                             if (currentuser.getLibrary().getMangaList().isEmpty()) {
                                 System.out.println("Nothing to remove...");
                             } else {
-                                for (i = 0; i < currentuser.getLibrary().getMangaList().size(); i++) {
-                                    System.out.println("[" + (i + 1) + "] " +
-                                            currentuser.getLibrary().getMangaList().get(i).getTitle() + " - " +
-                                            currentuser.getLibrary().getMangaList().get(i).getStudio());
+                                for (nIteration = 0; nIteration < currentuser.getLibrary().getMangaList().size(); nIteration++) {
+                                    System.out.println("[" + (nIteration + 1) + "] " +
+                                            currentuser.getLibrary().getMangaList().get(nIteration).getTitle() + " - " +
+                                            currentuser.getLibrary().getMangaList().get(nIteration).getStudio());
 
                                 }
                                 System.out.println("Enter number of Anime to Delete: ");
                                 do {
-                                    numchoice = sc.nextInt();
-                                    if (numchoice < 1 || numchoice > currentuser.getLibrary().getMangaList().size()) {
+                                    nScanNumberChoice = sc.nextInt();
+                                    if (nScanNumberChoice < 1 || nScanNumberChoice > currentuser.getLibrary().getMangaList().size()) {
                                         System.out.println("Error: Input out of bounds");
                                     }
                                 }
-                                while (numchoice < 1 || numchoice > currentuser.getLibrary().getMangaList().size());
+                                while (nScanNumberChoice < 1 || nScanNumberChoice > currentuser.getLibrary().getMangaList().size());
                                 System.out.println("You will be deleting: " +
-                                        currentuser.getLibrary().getMangaList().get(numchoice - 1).getTitle() + " - " +
-                                        currentuser.getLibrary().getMangaList().get(numchoice - 1).getStudio() + ", Continue?");
+                                        currentuser.getLibrary().getMangaList().get(nScanNumberChoice - 1).getTitle() + " - " +
+                                        currentuser.getLibrary().getMangaList().get(nScanNumberChoice - 1).getStudio() + ", Continue?");
                                 System.out.println("[1] Yes | [2] No");
                                 do {
-                                    numchoice2 = sc.nextInt();
-                                    if (numchoice2 != 1 && numchoice2 != 2) {
+                                    nScanNumberChoice2nd = sc.nextInt();
+                                    if (nScanNumberChoice2nd != 1 && nScanNumberChoice2nd != 2) {
                                         System.out.println("Error: Invalid Input!");
                                     }
                                 }
-                                while (numchoice2 != 1 && numchoice2 != 2);
+                                while (nScanNumberChoice2nd != 1 && nScanNumberChoice2nd != 2);
 
-                                currentuser.getLibrary().getMangaList().remove(numchoice - 1);
+                                currentuser.getLibrary().getMangaList().remove(nScanNumberChoice - 1);
                                 System.out.println("Successfully Deleted.");
-                                numchoice = 3;
+                                nScanNumberChoice = 3;
                             }
                         }
                     }
@@ -539,222 +543,223 @@ import java.util.Scanner;
                         System.out.println("What is the media type of the one you will update?");
                         System.out.println("[1] Movie | [2] Anime | [3] Manga/Manhwa");
                         do {
-                            numchoice = sc.nextInt();
-                            if (numchoice < 1 || numchoice > 3) {
+                            nScanNumberChoice = sc.nextInt();
+                            if (nScanNumberChoice < 1 || nScanNumberChoice > 3) {
                                 System.out.println("Please Choose a number from 1-3!");
                             }
                         }
-                        while (numchoice < 1 || numchoice > 3);
-                        if(numchoice == 1)
+                        while (nScanNumberChoice < 1 || nScanNumberChoice > 3);
+                        if(nScanNumberChoice == 1)
                         {
-                            for(i = 0; i < currentuser.getLibrary().getMovieList().size(); i++)
+                            for(nIteration = 0; nIteration < currentuser.getLibrary().getMovieList().size(); nIteration++)
                             {
-                                System.out.println( "["+ (i+1) +"] "+ currentuser.getLibrary().getMovieList().get(i).getTitle() + " - " +
-                                        currentuser.getLibrary().getMovieList().get(i).getStudio());
+                                System.out.println( "["+ (nIteration+1) +"] "+ currentuser.getLibrary().getMovieList().get(nIteration).getTitle() + " - " +
+                                        currentuser.getLibrary().getMovieList().get(nIteration).getStudio());
                             }
                             System.out.println("Enter number of Movie to Update");
                             do {
-                                numchoice = sc.nextInt();
-                                if (numchoice < 1 || numchoice > currentuser.getLibrary().getMovieList().size()) {
+                                nScanNumberChoice = sc.nextInt();
+                                if (nScanNumberChoice < 1 || nScanNumberChoice > currentuser.getLibrary().getMovieList().size()) {
                                     System.out.println("Error: Input out of bounds");
                                 }
                             }
-                            while (numchoice < 1 || numchoice > currentuser.getLibrary().getMovieList().size());
+                            while (nScanNumberChoice < 1 || nScanNumberChoice > currentuser.getLibrary().getMovieList().size());
                             System.out.println("You will be updating: " +
-                                    currentuser.getLibrary().getMovieList().get(numchoice - 1).getTitle() + " - " +
-                                    currentuser.getLibrary().getMovieList().get(numchoice - 1).getStudio() + ", Continue?");
+                                    currentuser.getLibrary().getMovieList().get(nScanNumberChoice - 1).getTitle() + " - " +
+                                    currentuser.getLibrary().getMovieList().get(nScanNumberChoice - 1).getStudio() + ", Continue?");
                             System.out.println("[1] Yes | [2] No");
                             do {
-                                numchoice2 = sc.nextInt();
-                                if (numchoice2 != 1 && numchoice2 != 2) {
+                                nScanNumberChoice2nd = sc.nextInt();
+                                if (nScanNumberChoice2nd != 1 && nScanNumberChoice2nd != 2) {
                                     System.out.println("Error: Invalid Input!");
                                 }
                             }
-                            while (numchoice2 != 1 && numchoice2 != 2);
+                            while (nScanNumberChoice2nd != 1 && nScanNumberChoice2nd != 2);
                             System.out.println("What to Update?");
                             System.out.println("[1] Status | [2] Description");
                             do {
-                                numchoice2 = sc.nextInt();
-                                if (numchoice2 != 1 && numchoice2 != 2) {
+                                nScanNumberChoice2nd = sc.nextInt();
+                                if (nScanNumberChoice2nd != 1 && nScanNumberChoice2nd != 2) {
                                     System.out.println("Error: Invalid Input!");
                                 }
                             }
-                            while (numchoice2 != 1 && numchoice2 != 2);
-                            if(numchoice2 == 1)
+                            while (nScanNumberChoice2nd != 1 && nScanNumberChoice2nd != 2);
+                            if(nScanNumberChoice2nd == 1)
                             {
                                 System.out.println("Enter Number Corresponding to the Status");
                                 System.out.println("[1] Planned | [2] In Progress | [3] Completed");
                                 do {
-                                    numchoice2 = sc.nextInt();
-                                    if (numchoice2 < 1 || numchoice2 > 3) {
+                                    nScanNumberChoice2nd = sc.nextInt();
+                                    if (nScanNumberChoice2nd < 1 || nScanNumberChoice2nd > 3) {
                                         System.out.println("Please Choose a number from 1-3!");
                                     }
                                 }
-                                while (numchoice2 < 1 || numchoice2 > 3);
-                                if (numchoice2 == 1)
+                                while (nScanNumberChoice2nd < 1 || nScanNumberChoice2nd > 3);
+                                if (nScanNumberChoice2nd == 1)
                                 {
-                                    builder[2] = "Planned";
-                                } else if (numchoice2 == 2)
+                                    strConstructBuilder[2] = "Planned";
+                                } else if (nScanNumberChoice2nd == 2)
                                 {
-                                    builder[2] = "In Progress";
+                                    strConstructBuilder[2] = "In Progress";
                                 } else
                                 {
-                                    builder[2] = "Completed";
+                                    strConstructBuilder[2] = "Completed";
                                 }
-                                currentuser.getLibrary().getMovieList().get(numchoice-1).setStatus(builder[2]);
+                                currentuser.getLibrary().getMovieList().get(nScanNumberChoice-1).setStatus(strConstructBuilder[2]);
                             }
                             else
                             {
                                 System.out.println("Enter New Description: ");
-                                builder[2] = sc.nextLine();
-                                builder[2] = sc.nextLine();
-                                currentuser.getLibrary().getMovieList().get(numchoice-1).setDescription(builder[2]);
+                                strConstructBuilder[2] = sc.nextLine();
+                                strConstructBuilder[2] = sc.nextLine();
+                                currentuser.getLibrary().getMovieList().get(nScanNumberChoice-1).setDescription(strConstructBuilder[2]);
                                 System.out.println("New Description: " +
-                                        currentuser.getLibrary().getMovieList().get(numchoice-1).getDescription());
+                                        currentuser.getLibrary().getMovieList().get(nScanNumberChoice-1).getDescription());
                             }
 
 
                         }
-                        if(numchoice == 2) {
-                            for (i = 0; i < currentuser.getLibrary().getAnimeList().size(); i++) {
-                                System.out.println("[" + (i + 1) + "] " + currentuser.getLibrary().getAnimeList().get(i).getTitle() + " - " +
-                                        currentuser.getLibrary().getAnimeList().get(i).getStudio());
+                        if(nScanNumberChoice == 2) {
+                            for (nIteration = 0; nIteration < currentuser.getLibrary().getAnimeList().size(); nIteration++) {
+                                System.out.println("[" + (nIteration + 1) + "] " + currentuser.getLibrary().getAnimeList().get(nIteration).getTitle() + " - " +
+                                        currentuser.getLibrary().getAnimeList().get(nIteration).getStudio());
                             }
                             System.out.println("Enter number of Movie to Update");
                             do {
-                                numchoice = sc.nextInt();
-                                if (numchoice < 1 || numchoice > currentuser.getLibrary().getAnimeList().size()) {
+                                nScanNumberChoice = sc.nextInt();
+                                if (nScanNumberChoice < 1 || nScanNumberChoice > currentuser.getLibrary().getAnimeList().size()) {
                                     System.out.println("Error: Input out of bounds");
                                 }
                             }
-                            while (numchoice < 1 || numchoice > currentuser.getLibrary().getAnimeList().size());
+                            while (nScanNumberChoice < 1 || nScanNumberChoice > currentuser.getLibrary().getAnimeList().size());
                             System.out.println("You will be updating: " +
-                                    currentuser.getLibrary().getAnimeList().get(numchoice - 1).getTitle() + " - " +
-                                    currentuser.getLibrary().getAnimeList().get(numchoice - 1).getStudio() + ", Continue?");
+                                    currentuser.getLibrary().getAnimeList().get(nScanNumberChoice - 1).getTitle() + " - " +
+                                    currentuser.getLibrary().getAnimeList().get(nScanNumberChoice - 1).getStudio() + ", Continue?");
                             System.out.println("[1] Yes | [2] No");
                             do {
-                                numchoice2 = sc.nextInt();
-                                if (numchoice2 != 1 && numchoice2 != 2) {
+                                nScanNumberChoice2nd = sc.nextInt();
+                                if (nScanNumberChoice2nd != 1 && nScanNumberChoice2nd != 2) {
                                     System.out.println("Error: Invalid Input!");
                                 }
                             }
-                            while (numchoice2 != 1 && numchoice2 != 2);
+                            while (nScanNumberChoice2nd != 1 && nScanNumberChoice2nd != 2);
                             System.out.println("What to Update?");
                             System.out.println("[1] Status | [2] Description");
                             do {
-                                numchoice2 = sc.nextInt();
-                                if (numchoice2 != 1 && numchoice2 != 2) {
+                                nScanNumberChoice2nd = sc.nextInt();
+                                if (nScanNumberChoice2nd != 1 && nScanNumberChoice2nd != 2) {
                                     System.out.println("Error: Invalid Input!");
                                 }
                             }
-                            while (numchoice2 != 1 && numchoice2 != 2);
-                            if (numchoice2 == 1) {
+                            while (nScanNumberChoice2nd != 1 && nScanNumberChoice2nd != 2);
+                            if (nScanNumberChoice2nd == 1) {
                                 System.out.println("Enter Number Corresponding to the Status");
                                 System.out.println("[1] Planned | [2] In Progress | [3] Completed");
                                 do {
-                                    numchoice2 = sc.nextInt();
-                                    if (numchoice2 < 1 || numchoice2 > 3) {
+                                    nScanNumberChoice2nd = sc.nextInt();
+                                    if (nScanNumberChoice2nd < 1 || nScanNumberChoice2nd > 3) {
                                         System.out.println("Please Choose a number from 1-3!");
                                     }
                                 }
-                                while (numchoice2 < 1 || numchoice2 > 3);
-                                if (numchoice2 == 1) {
-                                    builder[2] = "Planned";
-                                } else if (numchoice2 == 2) {
-                                    builder[2] = "In Progress";
+                                while (nScanNumberChoice2nd < 1 || nScanNumberChoice2nd > 3);
+                                if (nScanNumberChoice2nd == 1) {
+                                    strConstructBuilder[2] = "Planned";
+                                } else if (nScanNumberChoice2nd == 2) {
+                                    strConstructBuilder[2] = "In Progress";
                                 } else {
-                                    builder[2] = "Completed";
+                                    strConstructBuilder[2] = "Completed";
                                 }
-                                currentuser.getLibrary().getAnimeList().get(numchoice - 1).setStatus(builder[2]);
+                                currentuser.getLibrary().getAnimeList().get(nScanNumberChoice - 1).setStatus(strConstructBuilder[2]);
                             } else {
                                 System.out.println("Enter New Description: ");
-                                builder[2] = sc.nextLine();
-                                builder[2] = sc.nextLine();
-                                currentuser.getLibrary().getAnimeList().get(numchoice - 1).setDescription(builder[2]);
+                                strConstructBuilder[2] = sc.nextLine();
+                                strConstructBuilder[2] = sc.nextLine();
+                                currentuser.getLibrary().getAnimeList().get(nScanNumberChoice - 1).setDescription(strConstructBuilder[2]);
                                 System.out.println("New Description: " +
-                                        currentuser.getLibrary().getAnimeList().get(numchoice - 1).getDescription());
+                                        currentuser.getLibrary().getAnimeList().get(nScanNumberChoice - 1).getDescription());
                             }
                         }
-                        if(numchoice == 3)
+                        if(nScanNumberChoice == 3)
                         {
-                            for(i = 0; i < currentuser.getLibrary().getMangaList().size(); i++)
+                            for(nIteration = 0; nIteration < currentuser.getLibrary().getMangaList().size(); nIteration++)
                             {
-                                System.out.println( "["+ (i+1) +"] "+ currentuser.getLibrary().getMangaList().get(i).getTitle() + " - " +
-                                        currentuser.getLibrary().getMangaList().get(i).getStudio());
+                                System.out.println( "["+ (nIteration+1) +"] "+ currentuser.getLibrary().getMangaList().get(nIteration).getTitle() + " - " +
+                                        currentuser.getLibrary().getMangaList().get(nIteration).getStudio());
                             }
                             System.out.println("Enter number of Movie to Update");
                             do {
-                                numchoice = sc.nextInt();
-                                if (numchoice < 1 || numchoice > currentuser.getLibrary().getMangaList().size()) {
+                                nScanNumberChoice = sc.nextInt();
+                                if (nScanNumberChoice < 1 || nScanNumberChoice > currentuser.getLibrary().getMangaList().size()) {
                                     System.out.println("Error: Input out of bounds");
                                 }
                             }
-                            while (numchoice < 1 || numchoice > currentuser.getLibrary().getMangaList().size());
+                            while (nScanNumberChoice < 1 || nScanNumberChoice > currentuser.getLibrary().getMangaList().size());
                             System.out.println("You will be updating: " +
-                                    currentuser.getLibrary().getMangaList().get(numchoice - 1).getTitle() + " - " +
-                                    currentuser.getLibrary().getMangaList().get(numchoice - 1).getStudio() + ", Continue?");
+                                    currentuser.getLibrary().getMangaList().get(nScanNumberChoice - 1).getTitle() + " - " +
+                                    currentuser.getLibrary().getMangaList().get(nScanNumberChoice - 1).getStudio() + ", Continue?");
                             System.out.println("[1] Yes | [2] No");
                             do {
-                                numchoice2 = sc.nextInt();
-                                if (numchoice2 != 1 && numchoice2 != 2) {
+                                nScanNumberChoice2nd = sc.nextInt();
+                                if (nScanNumberChoice2nd != 1 && nScanNumberChoice2nd != 2) {
                                     System.out.println("Error: Invalid Input!");
                                 }
                             }
-                            while (numchoice2 != 1 && numchoice2 != 2);
+                            while (nScanNumberChoice2nd != 1 && nScanNumberChoice2nd != 2);
                             System.out.println("What to Update?");
                             System.out.println("[1] Status | [2] Description");
                             do {
-                                numchoice2 = sc.nextInt();
-                                if (numchoice2 != 1 && numchoice2 != 2) {
+                                nScanNumberChoice2nd = sc.nextInt();
+                                if (nScanNumberChoice2nd != 1 && nScanNumberChoice2nd != 2) {
                                     System.out.println("Error: Invalid Input!");
                                 }
                             }
-                            while (numchoice2 != 1 && numchoice2 != 2);
-                            if(numchoice2 == 1)
+                            while (nScanNumberChoice2nd != 1 && nScanNumberChoice2nd != 2);
+                            if(nScanNumberChoice2nd == 1)
                             {
                                 System.out.println("Enter Number Corresponding to the Status");
                                 System.out.println("[1] Planned | [2] In Progress | [3] Completed");
                                 do {
-                                    numchoice2 = sc.nextInt();
-                                    if (numchoice2 < 1 || numchoice2 > 3) {
+                                    nScanNumberChoice2nd = sc.nextInt();
+                                    if (nScanNumberChoice2nd < 1 || nScanNumberChoice2nd > 3) {
                                         System.out.println("Please Choose a number from 1-3!");
                                     }
                                 }
-                                while (numchoice2 < 1 || numchoice2 > 3);
-                                if (numchoice2 == 1)
+                                while (nScanNumberChoice2nd < 1 || nScanNumberChoice2nd > 3);
+                                if (nScanNumberChoice2nd == 1)
                                 {
-                                    builder[2] = "Planned";
-                                } else if (numchoice2 == 2)
+                                    strConstructBuilder[2] = "Planned";
+                                } else if (nScanNumberChoice2nd == 2)
                                 {
-                                    builder[2] = "In Progress";
+                                    strConstructBuilder[2] = "In Progress";
                                 } else
                                 {
-                                    builder[2] = "Completed";
+                                    strConstructBuilder[2] = "Completed";
                                 }
-                                currentuser.getLibrary().getMangaList().get(numchoice-1).setStatus(builder[2]);
+                                currentuser.getLibrary().getMangaList().get(nScanNumberChoice-1).setStatus(strConstructBuilder[2]);
                             }
                             else
                             {
                                 System.out.println("Enter New Description: ");
-                                builder[2] = sc.nextLine();
-                                builder[2] = sc.nextLine();
-                                currentuser.getLibrary().getMangaList().get(numchoice-1).setDescription(builder[2]);
+                                strConstructBuilder[2] = sc.nextLine();
+                                strConstructBuilder[2] = sc.nextLine();
+                                currentuser.getLibrary().getMangaList().get(nScanNumberChoice-1).setDescription(strConstructBuilder[2]);
                                 System.out.println("New Description: " +
-                                        currentuser.getLibrary().getMangaList().get(numchoice-1).getDescription());
+                                        currentuser.getLibrary().getMangaList().get(nScanNumberChoice-1).getDescription());
                             }
                         }
                     }
                     break;
                 case 6:
                     System.out.println("Logging out...");
-                    loggedin = false;
+                    isLoggedin = false;
                 default:
                     break;
             }
 
 
         }
-        while (loggedin);
+        while (isLoggedin);
         sc.close();
     }
+
 
