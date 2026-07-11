@@ -1,13 +1,14 @@
 public class Anime
 {
     private final String title;
-    private int ID = 100000; //Static to generate unique ID
+    private int id = 100000; //Static to generate unique ID
     private final String studio;
     private Rating rating = new Rating(); //Anime Rating
     private int episodes;
-    private String[] episodedescription;
+    private String description;
     private String status = "Planned";
     private int durationinmins;
+    private int season;
 
     //Constructor Methods here
     public Anime(String title, String studio, String status)
@@ -15,20 +16,20 @@ public class Anime
         this.title = title;
         this.studio = studio;
         this.status = status;
-        ID++;
+        id++;
     }
     public Anime(String title, String studio)
     {
         this.title = title;
         this.studio = studio;
-        ID++;
+        id++;
     }
     public Anime(String title, String studio, int episodes)
     {
         this.title = title;
         this.studio = studio;
         this.episodes = episodes;
-        ID++;
+        id++;
     }
     public Anime(String title, String studio, int episodes, String status)
     {
@@ -36,16 +37,16 @@ public class Anime
         this.studio = studio;
         this.episodes = episodes;
         this.status = status;
-        ID++;
+        id++;
     }
     //Getter Methods here
     public String getStatus()
     {
         return status;
     }
-    public String[] getEpisodedescription()
+    public String getEpisodedescription()
     {
-        return episodedescription;
+        return description;
     }
     public int getEpisodes()
     {
@@ -53,7 +54,7 @@ public class Anime
     }
     public int getID()
     {
-        return ID;
+        return id;
     }
     public String getTitle()
     {
@@ -71,6 +72,19 @@ public class Anime
     {
         return durationinmins;
     }
+    public int getSeason()
+    {
+        return season;
+    }
+    public void displayInfo()
+    {
+        System.out.println(title);
+        System.out.println("Production Studio: " + studio);
+        System.out.println("Rating: " + rating.GetOverallrating());
+        System.out.println("Season: " + season);
+        System.out.println("Episodes: " + episodes);
+        System.out.println("Status: " + status);
+        System.out.println("Description: " + description);
+        System.out.println("ID: " + id );
+    }
 }
-
-// test
