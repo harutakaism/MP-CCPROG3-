@@ -1,14 +1,15 @@
 public class Anime
 {
     private final String title;
-    private int id = 100000; //Static to generate unique ID
+    private int id = 100000;
+    private static int incre = 0; //Static to generate unique ID
     private final String studio;
     private Rating rating = new Rating(); //Anime Rating
-    private int episodes;
     private String description;
     private String status = "Planned";
     private int durationinmins;
     private int season;
+    private int[] episodes = new int[season];
 
     //Constructor Methods here
     public Anime(String title, String studio, String status)
@@ -16,28 +17,25 @@ public class Anime
         this.title = title;
         this.studio = studio;
         this.status = status;
-        id++;
+        incre++;
+        this.id = id + incre;
     }
     public Anime(String title, String studio)
     {
         this.title = title;
         this.studio = studio;
-        id++;
+        incre++;
+        this.id = id + incre;
     }
-    public Anime(String title, String studio, int episodes)
-    {
-        this.title = title;
-        this.studio = studio;
-        this.episodes = episodes;
-        id++;
-    }
-    public Anime(String title, String studio, int episodes, String status)
+    public Anime(String title, String studio, int[] episodes, int season, String status)
     {
         this.title = title;
         this.studio = studio;
         this.episodes = episodes;
         this.status = status;
-        id++;
+        this.season = season;
+        incre++;
+        this.id = id + incre;
     }
     //Getter Methods here
     public String getStatus()
@@ -48,7 +46,7 @@ public class Anime
     {
         return description;
     }
-    public int getEpisodes()
+    public int[] getEpisodes()
     {
         return episodes;
     }
@@ -82,7 +80,12 @@ public class Anime
         System.out.println("Production Studio: " + studio);
         System.out.println("Rating: " + rating.GetOverallrating());
         System.out.println("Season: " + season);
-        System.out.println("Episodes: " + episodes);
+        for(int i = 0; i < season; i++)
+        {
+            System.out.println("Season " + (i+1) + ": ");
+            System.out.println("Episodes: " + episodes[i]);
+        }
+
         System.out.println("Status: " + status);
         System.out.println("Description: " + description);
         System.out.println("ID: " + id );
