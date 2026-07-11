@@ -48,7 +48,7 @@ public class Rating
 
     public void Rate(int UserRate)
     {
-        if(UserRate > 10 || UserRate < 0)
+        if(UserRate > 10 || UserRate < 1)
         {
             System.out.println("Rating voided: Please rate from 1-10");
         }
