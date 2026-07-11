@@ -58,8 +58,8 @@ public class Library
         } else {
             for (Anime animes : anime) {
                 animes.displayInfo();
-                }
             }
+        }
 
 
         System.out.println();
