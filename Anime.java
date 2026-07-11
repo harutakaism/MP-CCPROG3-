@@ -90,4 +90,23 @@ public class Anime
         System.out.println("Description: " + description);
         System.out.println("ID: " + id );
     }
+    public void setStatus(String status)
+    {
+        if(status.equalsIgnoreCase("Planned"))
+        {
+            this.status = "Planned";
+        }
+        else if(status.equalsIgnoreCase("In Progress"))
+        {
+            this.status = "In Progress";
+        }
+        else if(status.equalsIgnoreCase("Completed"))
+        {
+            this.status = "Completed";
+        }
+        else
+        {
+            System.out.println("Invalid status. Status remains as" + this.status);
+        }
+    }
 }
