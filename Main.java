@@ -382,6 +382,68 @@ public class Main
                     break;
                 case 4:
                     System.out.println("[Rate Completed Entry]");
+                    System.out.println("[1] Movie | [2] Anime | [3] Manga/Manhwa");
+                    System.out.println("Enter Type: ");
+
+                    do
+                    {
+                        numchoice = sc.nextInt();
+                    }
+                    while(numchoice < 1 || numchoice > 3);
+
+                    System.out.println("Enter ID of entry to rate: ");
+                    int searchID = sc.nextInt();
+
+                    System.out.println("Enter rating from 1-10: ");
+                    int userRating = sc.nextInt();
+
+                    sc.nextLine();
+
+                    System.out.println("Enter review: ");
+                    String userReview = sc.nextLine();
+
+                    if(numchoice == 1)
+                    {
+                        Movies selectedMovie = currentuser.getLibrary().findMovieByID(searchID);
+
+                        if(selectedMovie == null)
+                        {
+                            System.out.println("Movie not found.");
+                        }
+                        else
+                        {
+                            selectedMovie.rateMedia(userRating);
+                            selectedMovie.addReview(userReview);
+                        }
+                    }
+                    else if(numchoice == 2)
+                    {
+                        Anime selectedAnime = currentuser.getLibrary().findAnimeByID(searchID);
+
+                        if(selectedAnime == null)
+                        {
+                            System.out.println("Anime not found.");
+                        }
+                        else
+                        {
+                            selectedAnime.rateMedia(userRating);
+                            selectedAnime.addReview(userReview);
+                        }
+                    }
+                    else if(numchoice == 3)
+                    {
+                        ManhwaToMangaDesu selectedManga = currentuser.getLibrary().findMangaByID(searchID);
+
+                        if(selectedManga == null)
+                        {
+                            System.out.println("Manhwa/Manga/Webtoon not found.");
+                        }
+                        else
+                        {
+                            selectedManga.rateMedia(userRating);
+                            selectedManga.addReview(userReview);
+                        }
+                    }
                     break;
                 case 5:
                     System.out.println("Logging out...");
