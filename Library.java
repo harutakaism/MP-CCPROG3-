@@ -36,48 +36,99 @@ public class Library
     }
     public ArrayList<Anime> getAnimeList()
     {
-        return animeList;
+        return anime;
     }
     public ArrayList<ManhwaToMangaDesu> getMangaList()
     {
-        return mangaList;
+        return mangadesho;
     }
     public ArrayList<Movies> getMovieList()
     {
-        return movieList;
+        return movies;
     }
     public void displayAllEntries()
     {
         System.out.println("ALL LIBRARY ENTRIES");
 
+        System.out.println();
         System.out.println("Anime");
-        if (animeList.isEmpty())
+        if (anime.isEmpty())
         {
             System.out.println("No anime entries.");
         } else {
-            for (Anime anime : animeList) {
-                anime.DisplayInfo();
+            for (Anime animes : anime) {
+                animes.displayInfo();
+                }
             }
-        }
 
+
+        System.out.println();
         System.out.println("Manga/Manhwa/Webtoon");
-        if (mangaList.isEmpty())
+        if (mangadesho.isEmpty())
         {
             System.out.println("No manga/manhwa/webtoon entries.");
         } else {
-            for (ManhwaToMangaDesu manga : mangaList) {
+            for (ManhwaToMangaDesu manga : mangadesho) {
                 manga.displayInfo();
             }
+            System.out.println("Total Entries: " + mangadesho.size());
         }
 
+        System.out.println();
         System.out.println("Movies");
-        if (movieList.isEmpty())
+        if (movies.isEmpty())
         {
             System.out.println("No movie entries.");
         } else {
-            for (Movies movie : movieList) {
+            for (Movies movie : movies) {
                 movie.displayInfo();
             }
         }
     }
+    public void displayAnime()
+    {
+        System.out.println("Anime");
+        if (anime.isEmpty())
+        {
+            System.out.println("No anime entries.");
+        }
+        else
+        {
+            for (Anime animes : anime)
+            {
+                animes.displayInfo();
+            }
+        }
+    }
+    public void displayMovies()
+    {
+        System.out.println("Movies");
+        if (movies.isEmpty())
+        {
+            System.out.println("No movie entries.");
+        }
+        else
+        {
+            for (Movies movie : movies) {
+                movie.displayInfo();
+            }
+        }
+    }
+    public void displayManga()
+    {
+        System.out.println("Manga/Manhwa/Webtoon");
+        if (mangadesho.isEmpty())
+        {
+            System.out.println("No manga/manhwa/webtoon entries.");
+        }
+        else
+        {
+            for (ManhwaToMangaDesu manga : mangadesho)
+            {
+                manga.displayInfo();
+            }
+            System.out.println("Total Entries: " + mangadesho.size());
+        }
+    }
 }
+
