@@ -7,7 +7,6 @@ public class Rating
     private String review;
 
 
-    //Default Constructor can only be used
     public Rating()
     {
         numberofratings = 0;
@@ -45,8 +44,8 @@ public class Rating
         System.out.println("Review added!");
     }
 
-    //Setter Methods??? 
-    
+    //Setter Methods???
+
     public void Rate(int UserRate)
     {
         if(UserRate > 10 || UserRate < 0)
@@ -62,5 +61,5 @@ public class Rating
             System.out.println("Rating added!");
         }
     }
-    
+
 }
