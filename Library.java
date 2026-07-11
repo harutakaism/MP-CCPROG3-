@@ -210,35 +210,35 @@ public class Library
     }
     public Anime findAnimeByID(int id)
     {
-        for (Anime animes : anime)
+        for (Anime item : anime)
         {
             if (item.getID() == id)
             {
                 return item;
             }
-        })
+        }
         return null;
     }
     public ManhwaToMangaDesu findMangaByID(int id)
     {
-        for (ManhwaToMangaDesu manga : mangadesho)
+        for (ManhwaToMangaDesu item : mangadesho)
         {
             if (item.getID() == id)
             {
                 return item;
             }
-        })
+        }
         return null;
     }
     public Movies findMovieByID(int id)
     {
-        for (Movies movie : movies)
+        for (Movies item : movies)
         {
             if (item.getID() == id)
             {
                 return item;
             }
-        })
+        }
         return null;
     }
 }
