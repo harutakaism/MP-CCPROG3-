@@ -208,5 +208,38 @@ public class Library
             System.out.println("Average Rating of Completed Entries: No ratings yet.");
         }
     }
+    public Anime findAnimeByID(int id)
+    {
+        for (Anime animes : anime)
+        {
+            if (item.getID() == id)
+            {
+                return item;
+            }
+        })
+        return null;
+    }
+    public ManhwaToMangaDesu findMangaByID(int id)
+    {
+        for (ManhwaToMangaDesu manga : mangadesho)
+        {
+            if (item.getID() == id)
+            {
+                return item;
+            }
+        })
+        return null;
+    }
+    public Movies findMovieByID(int id)
+    {
+        for (Movies movie : movies)
+        {
+            if (item.getID() == id)
+            {
+                return item;
+            }
+        })
+        return null;
+    }
 }
 
