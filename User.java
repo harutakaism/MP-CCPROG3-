@@ -1,11 +1,11 @@
 public class User
 {
-    private int id = 100000000;
+    private static int id = 100000000;
     private String username;
     private Library library = new Library();
     private String password;
     private String bio;
-    
+
     //Constructors here
     User(String username, String password)
     {
@@ -34,5 +34,6 @@ public class User
     {
         return bio;
     }
-    
+
 }
+
