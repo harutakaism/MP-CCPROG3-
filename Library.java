@@ -130,5 +130,83 @@ public class Library
             System.out.println("Total Entries: " + mangadesho.size());
         }
     }
+    public void displaySummary()
+    {
+        int total = anime.size() + mangadesho.size() + movies.size();
+        int planned = 0;
+        int inProgress = 0;
+        int completed = 0;
+        float ratingSum = 0;
+        int ratedCompleted = 0;
+
+        for(Anime item : anime)
+        {
+            if(item.getStatus().equals("Planned"))
+                planned++;
+            else if(item.getStatus().equals("In Progress"))
+                inProgress++;
+            else if(item.getStatus().equals("Completed"))
+            {
+                completed++;
+                if(item.getRating().hasRating())
+                {
+                    ratingSum += item.getRating().GetOverallRating();
+                    ratedCompleted++;
+                }
+            }
+        }
+
+        for(ManhwaToMangaDesu item : mangadesho)
+        {
+            if(item.getStatus().equals("Planned"))
+                planned++;
+            else if(item.getStatus().equals("In Progress"))
+                inProgress++;
+            else if(item.getStatus().equals("Completed"))
+            {
+                completed++;
+                if(item.getRating().hasRating())
+                {
+                    ratingSum += item.getRating().GetOverallRating();
+                    ratedCompleted++;
+                }
+            }
+        }
+
+        for(Movies item : movies)
+        {
+            if(item.getStatus().equals("Planned"))
+                planned++;
+            else if(item.getStatus().equals("In Progress"))
+                inProgress++;
+            else if(item.getStatus().equals("Completed"))
+            {
+                completed++;
+                if(item.getRating().hasRating())
+                {
+                    ratingSum += item.getRating().GetOverallRating();
+                    ratedCompleted++;
+                }
+            }
+        }
+
+        System.out.println("LIBRARY SUMMARY");
+        System.out.println("Total Entries: " + total);
+        System.out.println("Anime Entries: " + anime.size());
+        System.out.println("Manga/Manhwa/Webtoon Entries: " + mangadesho.size());
+        System.out.println("Movie Entries: " + movies.size());
+        System.out.println("Planned: " + planned);
+        System.out.println("In Progress: " + inProgress);
+        System.out.println("Completed: " + completed);
+
+        if(ratedCompleted > 0)
+        {
+            System.out.println("Average Rating of Completed Entries: " + (ratingSum / ratedCompleted));
+        }
+        else
+        {
+            System.out.println("Average Rating of Completed Entries: No ratings yet.");
+        }
+    }
 }
 
