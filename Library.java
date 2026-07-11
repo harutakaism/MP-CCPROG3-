@@ -150,7 +150,7 @@ public class Library
                 completed++;
                 if(item.getRating().hasRating())
                 {
-                    ratingSum += item.getRating().GetOverallRating();
+                    ratingSum += item.getRating().GetOverallrating();
                     ratedCompleted++;
                 }
             }
@@ -167,7 +167,7 @@ public class Library
                 completed++;
                 if(item.getRating().hasRating())
                 {
-                    ratingSum += item.getRating().GetOverallRating();
+                    ratingSum += item.getRating().GetOverallrating();
                     ratedCompleted++;
                 }
             }
@@ -184,7 +184,7 @@ public class Library
                 completed++;
                 if(item.getRating().hasRating())
                 {
-                    ratingSum += item.getRating().GetOverallRating();
+                    ratingSum += item.getRating().GetOverallrating();
                     ratedCompleted++;
                 }
             }
