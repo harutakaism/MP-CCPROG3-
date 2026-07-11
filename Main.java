@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Scanner;
 void main()
 {
@@ -88,11 +87,12 @@ void main()
             case 1:
                 System.out.println("[View Library]");
                 System.out.println("[1] View All | [2] View by Movies | [3] View by Anime | [4] View by Manga/Manhwa");
+                System.out.println("[5] View by Completion | [6] Back");
                 do
                 {
                     numchoice = sc.nextInt();
                 }
-                while(numchoice < 1 || numchoice > 4);
+                while(numchoice < 1 || numchoice > 6);
                 if(numchoice == 1)
                 {
                     currentuser.getLibrary().displayAllEntries();
@@ -108,6 +108,46 @@ void main()
                 if(numchoice == 4)
                 {
                     currentuser.getLibrary().displayManga();
+                }
+                if(numchoice == 5)
+                {
+                    System.out.println("[Select Status to Filter by]");
+                    System.out.println("[1] Planned | [2] In Progress | [3] Completed");
+                    do {
+                        numchoice = sc.nextInt();
+                        if (numchoice < 1 || numchoice > 3) {
+                            System.out.println("Please Choose a number from 1-3!");
+                        }
+                    }
+                    while (numchoice < 1 || numchoice > 3);
+                    if (numchoice == 1) {
+                        builder[2] = "Planned";
+                    } else if (numchoice == 2) {
+                        builder[2] = "In Progress";
+                    } else {
+                        builder[2] = "Completed";
+                    }
+                    for(i = 0; i < currentuser.getLibrary().getMovieList().size(); i++)
+                    {
+                        if(currentuser.getLibrary().getMovieList().get(i).getStatus().contentEquals(builder[2]))
+                        {
+                            currentuser.getLibrary().getMovieList().get(i).displayInfo();
+                        }
+                    }
+                    for(i = 0; i < currentuser.getLibrary().getAnimeList().size(); i++)
+                    {
+                        if(currentuser.getLibrary().getAnimeList().get(i).getStatus().contentEquals(builder[2]))
+                        {
+                            currentuser.getLibrary().getAnimeList().get(i).displayInfo();
+                        }
+                    }
+                    for(i = 0; i < currentuser.getLibrary().getMangaList().size(); i++)
+                    {
+                        if(currentuser.getLibrary().getMangaList().get(i).getStatus().contentEquals(builder[2]))
+                        {
+                            currentuser.getLibrary().getMangaList().get(i).displayInfo();
+                        }
+                    }
                 }
                 break;
             case 2:
