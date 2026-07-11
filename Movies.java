@@ -1,97 +1,134 @@
-public class Movies
-{
-    private final String title;
-    private int id = 800000; //Static to generate unique ID
-    private final String studio;
-    private Rating rating = new Rating(); //Movie Rating
-    private String description;
-    private String status = "Planned";
-    private int durationinmins;
+import java.util.ArrayList;
 
-    //Constructor Methods here
-    public Movies(String title, String studio, int durationinmins)
+public class Library
+{
+    private ArrayList<Anime> anime = new ArrayList<>();
+    private ArrayList<ManhwaToMangaDesu> mangadesho = new ArrayList<>();
+    private ArrayList<Movies> movies = new ArrayList<>();
+
+    //Use default constructor for this
+
+    //Methods(Adding)
+    public void addAnime(Anime anime)
     {
-        this.title = title;
-        this.studio = studio;
-        this.durationinmins = durationinmins;
-        id++;
+        this.anime.add(anime);
     }
-    public Movies(String title, String studio, int durationinmins, String status)
+    public void addManga(ManhwaToMangaDesu manga)
     {
-        this.title = title;
-        this.studio = studio;
-        this.durationinmins = durationinmins;
-        this.status = status;
-        id++;
+        this.mangadesho.add(manga);
     }
-    public Movies(String title, String studio,String status)
+    public void addMovie(Movies movie)
     {
-        this.title = title;
-        this.studio = studio;
-        this.status = status;
-        id++;
+        this.movies.add(movie);
     }
-    //Getter Methods here
-    public String getStatus()
+    //Methods(Deleting)
+    public void deleteAnime(Anime anime)
     {
-        return status;
+        this.anime.remove(anime);
     }
-    public String getDescription()
+    public void deleteManga(ManhwaToMangaDesu manga)
     {
-        return description;
+        this.mangadesho.remove(manga);
     }
-    public int getID()
+    public void deleteMovie(Movies movie)
     {
-        return id;
+        this.movies.remove(movie);
     }
-    public String getTitle()
+    public ArrayList<Anime> getAnimeList()
     {
-        return title;
+        return anime;
     }
-    public String getStudio()
+    public ArrayList<ManhwaToMangaDesu> getMangaList()
     {
-        return studio;
+        return mangadesho;
     }
-    public Rating getRating()
+    public ArrayList<Movies> getMovieList()
     {
-        return rating;
+        return movies;
     }
-    public int getDurationinmins()
+    public void displayAllEntries()
     {
-        return durationinmins;
-    }
-    public void displayInfo()
-    {
-        System.out.println(title);
-        System.out.println("Production Studio: " + studio);
-        System.out.println("Rating: " + rating.GetOverallrating());
-        System.out.println("Duration: ");
-        if(durationinmins >= 60)
+        System.out.println("ALL LIBRARY ENTRIES");
+
+        System.out.println();
+        System.out.println("Anime");
+        if (anime.isEmpty())
         {
-            if(durationinmins < 120)
-            {
-                System.out.print("1 Hour ");
+            System.out.println("No anime entries.");
+        } else {
+            for (Anime animes : anime) {
+                animes.displayInfo();
+                }
             }
-            else
-            {
-                System.out.println( durationinmins / 60 + " Hours ");
+
+
+        System.out.println();
+        System.out.println("Manga/Manhwa/Webtoon");
+        if (mangadesho.isEmpty())
+        {
+            System.out.println("No manga/manhwa/webtoon entries.");
+        } else {
+            for (ManhwaToMangaDesu manga : mangadesho) {
+                manga.displayInfo();
+            }
+            System.out.println("Total Entries: " + mangadesho.size());
+        }
+
+        System.out.println();
+        System.out.println("Movies");
+        if (movies.isEmpty())
+        {
+            System.out.println("No movie entries.");
+        } else {
+            for (Movies movie : movies) {
+                movie.displayInfo();
             }
         }
-        if(durationinmins % 60 != 0 )
+    }
+    public void displayAnime()
+    {
+        System.out.println("Anime");
+        if (anime.isEmpty())
         {
-            if(durationinmins % 60 == 1)
+            System.out.println("No anime entries.");
+        }
+        else
+        {
+            for (Anime animes : anime)
             {
-                System.out.println(", 1 Minute");
-            }
-            else
-            {
-                System.out.println(", " + durationinmins % 60 + " Minutes");
+                animes.displayInfo();
             }
         }
-        System.out.println("Status: " + status);
-        System.out.println("Description: " + description);
-        System.out.println("ID: " + id );
+    }
+    public void displayMovies()
+    {
+        System.out.println("Movies");
+        if (movies.isEmpty())
+        {
+            System.out.println("No movie entries.");
+        }
+        else
+        {
+            for (Movies movie : movies) {
+                movie.displayInfo();
+            }
+        }
+    }
+    public void displayManga()
+    {
+        System.out.println("Manga/Manhwa/Webtoon");
+        if (mangadesho.isEmpty())
+        {
+            System.out.println("No manga/manhwa/webtoon entries.");
+        }
+        else
+        {
+            for (ManhwaToMangaDesu manga : mangadesho)
+            {
+                manga.displayInfo();
+            }
+            System.out.println("Total Entries: " + mangadesho.size());
+        }
     }
 }
-
 
