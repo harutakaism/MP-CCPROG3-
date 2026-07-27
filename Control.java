@@ -166,7 +166,8 @@ public class Control implements ActionListener
 
 
         }
-        if (e.getSource() == button[4]) {
+        if (e.getSource() == button[4]) //BACK
+        {
             for (i = 0; i < button.length; i++) {
                 if (i == 0 || i == 1 || i == 5) {
                     button[i].setVisible(true);
@@ -208,6 +209,7 @@ public class Control implements ActionListener
             textFields[0].setVisible(false);
             textFields[1].setVisible(false);
             passwordField.setVisible(false);
+            label[0].setIcon(new ImageIcon("src/MenuPage.jpg"));
 
         }
         if (e.getSource() == button[7])//LOG OUT BUTTON
@@ -254,7 +256,7 @@ public class Control implements ActionListener
         }
         if (e.getSource() == button[9]) //CANCEL
         {
-            label[0].setIcon(new ImageIcon("src/createaccount.jpg"));
+            label[0].setIcon(new ImageIcon("src/MenuPage.jpg"));
             for (i = 1; i < label.length; i++) //Text
             {
                 if (i == 4) {
@@ -263,19 +265,97 @@ public class Control implements ActionListener
                     label[i].setVisible(false);
                 }
             }
-        for (i = 0; i < button.length; i++) //Button
-        {
-            if (i == 7 || (i < 15 && i > 9)) {
-                button[i].setVisible(true);
-            } else {
-                button[i].setVisible(false);
+            for (i = 0; i < button.length; i++) //Button
+            {
+            if (i == 7 || (i < 15 && i > 9))
+            {
+                 button[i].setVisible(true);
+            }
+            else
+            {
+                 button[i].setVisible(false);
             }
 
+            }
+            textFields[0].setVisible(false);
+            textFields[1].setVisible(false);
+            passwordField.setVisible(false);
         }
-        textFields[0].setVisible(false);
-        textFields[1].setVisible(false);
-        passwordField.setVisible(false);
-    }
+        if(e.getSource()==button[10]) //VIEW LIBRARY
+        {
+            label[6].setText("View Library");
+            label[6].setVisible(true);
+            for(i = 0; i < button.length; i++)
+            {
+                if(i >= 15 && i <= 18)
+                {
+                    button[i].setVisible(true);
+                }
+            }
+
+
+        }
+        if(e.getSource()==button[11]) //ADD LIBRARY
+        {
+            label[6].setText("Add Library");
+            label[6].setVisible(true);
+            for(i = 0; i < button.length; i++)
+            {
+                if((i >= 19 && i <= 21) || (i < 15 && i > 9) || i == 7)
+                {
+                    button[i].setVisible(true);
+                }
+                else
+                {
+                    button[i].setVisible(false);
+                }
+            }
+        }
+        if(e.getSource()==button[12]) //VIEW STATS
+        {
+            label[6].setText("View Stats");
+            label[6].setVisible(true);
+            if((i < 15 && i > 9) || i == 7)
+            {
+                button[i].setVisible(true);
+            }
+            else
+            {
+                button[i].setVisible(false);
+            }
+        }
+        if(e.getSource()==button[13]) //RATE COMPLETED ENTRY
+        {
+            label[6].setText("Rate Completed Entry");
+            label[6].setVisible(true);
+            for(i = 0; i < button.length; i++)
+            {
+                if((i >= 22 && i <= 24) || (i < 15 && i > 9) || i == 7)
+                {
+                    button[i].setVisible(true);
+                }
+                else
+                {
+                    button[i].setVisible(false);
+                }
+            }
+        }
+        if(e.getSource()==button[14]) //MODIFY MEDIA
+        {
+            label[6].setText("Modify Media");
+            label[6].setVisible(true);
+            for(i = 0; i < button.length; i++)
+            {
+                if(i == 25 || i == 26 || (i < 15 && i > 9) || i == 7)
+                {
+                    button[i].setVisible(true);
+                }
+                else
+                {
+                    button[i].setVisible(false);
+                }
+            }
+        }
 
     }
 }
