@@ -4,9 +4,9 @@ import java.awt.*;
 public class GUI extends JFrame
 {
     JLayeredPane panel, panel1;
-    JLabel[] label = new JLabel[6];
+    JLabel[] label = new JLabel[7];
     ImageIcon picture;
-    JButton[] button = new JButton[15];
+    JButton[] button = new JButton[27];
     JTextField[] textFields = new JTextField[10];
     JPasswordField passwordField;
     int i;
@@ -92,7 +92,7 @@ public class GUI extends JFrame
         //BUTTONS IN MENU PAGE: LOG OUT
 
         button[7] = new JButton("Log Out");
-        button[7].setBounds(800,684,200,50);
+        button[7].setBounds(820,684,200,50);
         button[7].setVisible(false);
 
         button[8] = new JButton("Log Out");
@@ -104,25 +104,86 @@ public class GUI extends JFrame
         button[9].setVisible(false);
 
         // BUTTONS IN MENU PAGE
-        button[10] = new JButton("View to Library");
-        button[10].setBounds(800,434,200,50);
+        button[10] = new JButton("View Library");
+        button[10].setBounds(820,434,200,50);
         button[10].setVisible(false);
 
         button[11] = new JButton("Add to Library");
-        button[11].setBounds(800,484,200,50);
+        button[11].setBounds(820,484,200,50);
         button[11].setVisible(false);
 
         button[12] = new JButton("View Stats");
-        button[12].setBounds(800,534,200,50);
+        button[12].setBounds(820,534,200,50);
         button[12].setVisible(false);
 
         button[13] = new JButton("Rate Completed Entry");
-        button[13].setBounds(800,584,200,50);
+        button[13].setBounds(820,584,200,50);
         button[13].setVisible(false);
 
         button[14] = new JButton("Modify Media");
-        button[14].setBounds(800,634,200,50);
+        button[14].setBounds(820,634,200,50);
         button[14].setVisible(false);
+
+        //VIEW LIBRARY
+        label[6] = new JLabel();
+        label[6].setBounds(820,414,200,25);
+        label[6].setVisible(false);
+
+        button[15] = new JButton("View All");
+        button[15].setBounds(612,434,200,50);
+        button[15].setVisible(false);
+
+        button[16] = new JButton("View by Movies");
+        button[16].setBounds(612,484,200,50);
+        button[16].setVisible(false);
+
+        button[17] = new JButton("View by Anime");
+        button[17].setBounds(612,534,200,50);
+        button[17].setVisible(false);
+
+        button[18] = new JButton("View by Manga/Manhwa");
+        button[18].setBounds(612,584,200,50);
+        button[18].setVisible(false);
+
+        //ADD TO LIBRARY
+
+        button[19] = new JButton("Add Movie");
+        button[19].setBounds(612,434,200,50);
+        button[19].setVisible(false);
+
+        button[20] = new JButton("Add Anime");
+        button[20].setBounds(612,484,200,50);
+        button[20].setVisible(false);
+
+        button[21] = new JButton("Add Manga");
+        button[21].setBounds(612,534,200,50);
+        button[21].setVisible(false);
+
+        //BUTTONS IN RATE COMPLETED ENTRY
+
+        button[22] = new JButton("Rate Movie");
+        button[22].setBounds(612,434,200,50);
+        button[22].setVisible(false);
+
+        button[23] = new JButton("Rate Anime");
+        button[23].setBounds(612,484,200,50);
+        button[23].setVisible(false);
+
+        button[24] = new JButton("Rate Manga");
+        button[24].setBounds(612,534,200,50);
+        button[24].setVisible(false);
+
+        //BUTTONS IN MODIFY MEDIA
+
+        button[25] = new JButton("Remove Media");
+        button[25].setBounds(612,434,200,50);
+        button[25].setVisible(false);
+
+        button[26] = new JButton("Change Status");
+        button[26].setBounds(612,484,200,50);
+        button[26].setVisible(false);
+
+        //BUTTONS IN REMOVE MEDIA 
 
 
         //LABELS IN MENU PAGE
