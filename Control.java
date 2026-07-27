@@ -7,9 +7,9 @@ import java.util.ArrayList;
 public class Control implements ActionListener
 {
     private JLayeredPane panel, panel1;
-    private JLabel[] label = new JLabel[10];
+    private JLabel[] label;
     private JButton[] button;
-    private JTextField[] textFields = new JTextField[10];
+    private JTextField[] textFields;
     private String UserInput, UserInput2;
     private JPasswordField passwordField;
     private int i;
@@ -39,14 +39,6 @@ public class Control implements ActionListener
         guiFace.add(panelnew);
         panelnew.setVisible(true);
     }
-    public void MainPage()
-    {
-            setLayeredPanel(panel,panel1);
-    }
-
-
-
-
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == button[0]) //TO LOGIN
         {
@@ -206,7 +198,7 @@ public class Control implements ActionListener
             }
             for (i = 0; i < button.length; i++) //Button
             {
-                if (i == 7) {
+                if (i == 7 || (i < 15 && i > 9)) {
                     button[i].setVisible(true);
                 } else {
                     button[i].setVisible(false);
@@ -220,6 +212,7 @@ public class Control implements ActionListener
         }
         if (e.getSource() == button[7])//LOG OUT BUTTON
         {
+            label[0].setIcon(new ImageIcon("src/LogOut.jpg"));
             for (i = 0; i < button.length; i++) //Buttons
             {
                 if (i == 8 || i == 9) {
@@ -230,7 +223,7 @@ public class Control implements ActionListener
             }
             for (i = 1; i < label.length; i++) {
                 if (i == 5) {
-                    label[i].setVisible(true);
+                    label[5].setVisible(true);
                 } else {
                     label[i].setVisible(false);
                 }
@@ -261,6 +254,7 @@ public class Control implements ActionListener
         }
         if (e.getSource() == button[9]) //CANCEL
         {
+            label[0].setIcon(new ImageIcon("src/createaccount.jpg"));
             for (i = 1; i < label.length; i++) //Text
             {
                 if (i == 4) {
@@ -271,7 +265,7 @@ public class Control implements ActionListener
             }
         for (i = 0; i < button.length; i++) //Button
         {
-            if (i == 7) {
+            if (i == 7 || (i < 15 && i > 9)) {
                 button[i].setVisible(true);
             } else {
                 button[i].setVisible(false);
