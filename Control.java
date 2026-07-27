@@ -356,6 +356,54 @@ public class Control implements ActionListener
                 }
             }
         }
+        if(e.getSource()==button[15]) //VIEW LIBRARY: VIEW ALL
+        {
+            //for example nothing
+        }
+        if(e.getSource()==button[16]) //VIEW LIBRARY: VIEW BY MOVIES
+        {
+            //for example nothing
+        }
+        if(e.getSource()==button[17]) //VIEW LIBRARY: VIEW BY ANIME
+        {
+            //for example nothing
+        }
+        if(e.getSource()==button[18]) //VIEW LIBRARY: VIEW BY MANGA
+        {
+            //for example nothing
+        }
+        if(e.getSource()==button[19]) //ADD TO LIBRARY: ADD MOVIE
+        {
+            //for example nothing
+        }
+        if(e.getSource()==button[20]) //ADD TO LIBRARY: ADD ANIME
+        {
+            //for example nothing
+        }
+        if(e.getSource()==button[21]) //ADD TO LIBRARY: ADD MANGA
+        {
+            //for example nothing
+        }
+        if(e.getSource()==button[22]) //RATE COMPLETED ENTRY: RATE MOVIE
+        {
+            //for example nothing
+        }
+        if(e.getSource()==button[23]) //RATE COMPLETED ENTRY: RATE ANIME
+        {
+            //for example nothing
+        }
+        if(e.getSource()==button[24]) //RATE COMPLETED ENTRY: RATE MANGA
+        {
+            //for example nothing
+        }
+        if(e.getSource()==button[25]) //MODIFY MEDIA: REMOVE MEDIA
+        {
+            //for example nothing
+        }
+        if(e.getSource()==button[26]) //MODIFY MEDIA: CHANGE STATUS
+        {
+            //for example nothing
+        }
 
     }
 }
