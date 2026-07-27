@@ -1,21 +1,15 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 public class GUI extends JFrame
 {
     JLayeredPane panel, panel1;
     JLabel[] label = new JLabel[6];
     ImageIcon picture;
-    JButton[] button = new JButton[10];
+    JButton[] button = new JButton[15];
     JTextField[] textFields = new JTextField[10];
-    String UserInput, UserInput2;
     JPasswordField passwordField;
     int i;
-    ArrayList<User> users = new ArrayList<>();
-    boolean isTrue;
-    User loginUser;
-
 
     GUI()
     {
@@ -95,10 +89,10 @@ public class GUI extends JFrame
         button[6].setBounds(412,384,200,50);
         button[6].setVisible(false);
 
-        //BUTTONS + LABELS IN MENU PAGE: LOG OUT
+        //BUTTONS IN MENU PAGE: LOG OUT
 
         button[7] = new JButton("Log Out");
-        button[7].setBounds(412,384,200,50);
+        button[7].setBounds(800,684,200,50);
         button[7].setVisible(false);
 
         button[8] = new JButton("Log Out");
@@ -109,7 +103,29 @@ public class GUI extends JFrame
         button[9].setBounds(412,584,200,50);
         button[9].setVisible(false);
 
-        //MENU PAGE
+        // BUTTONS IN MENU PAGE
+        button[10] = new JButton("View to Library");
+        button[10].setBounds(800,434,200,50);
+        button[10].setVisible(false);
+
+        button[11] = new JButton("Add to Library");
+        button[11].setBounds(800,484,200,50);
+        button[11].setVisible(false);
+
+        button[12] = new JButton("View Stats");
+        button[12].setBounds(800,534,200,50);
+        button[12].setVisible(false);
+
+        button[13] = new JButton("Rate Completed Entry");
+        button[13].setBounds(800,584,200,50);
+        button[13].setVisible(false);
+
+        button[14] = new JButton("Modify Media");
+        button[14].setBounds(800,634,200,50);
+        button[14].setVisible(false);
+
+
+        //LABELS IN MENU PAGE
         label[4] = new JLabel("Yon!");
         label[4].setBounds(412,324,200,25);
         label[4].setVisible(false);
