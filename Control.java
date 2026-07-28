@@ -283,6 +283,7 @@ public class Control implements ActionListener
         }
         if(e.getSource()==button[10]) //VIEW LIBRARY
         {
+            label[0].setIcon(new ImageIcon("src/MenuPage.jpg"));
             label[6].setText("View Library");
             label[6].setVisible(true);
             for(i = 0; i < button.length; i++)
@@ -297,6 +298,7 @@ public class Control implements ActionListener
         }
         if(e.getSource()==button[11]) //ADD LIBRARY
         {
+            label[0].setIcon(new ImageIcon("src/MenuPage.jpg"));
             label[6].setText("Add Library");
             label[6].setVisible(true);
             for(i = 0; i < button.length; i++)
@@ -313,19 +315,25 @@ public class Control implements ActionListener
         }
         if(e.getSource()==button[12]) //VIEW STATS
         {
+            label[0].setIcon(new ImageIcon("src/MenuPage.jpg"));
             label[6].setText("View Stats");
             label[6].setVisible(true);
-            if((i < 15 && i > 9) || i == 7)
+            for(i = 0; i < button.length; i++)
             {
-                button[i].setVisible(true);
+                if((i < 15 && i > 9) || i == 7)
+                {
+                    button[i].setVisible(true);
+                }
+                else
+                {
+                    button[i].setVisible(false);
+                }
             }
-            else
-            {
-                button[i].setVisible(false);
-            }
+
         }
         if(e.getSource()==button[13]) //RATE COMPLETED ENTRY
         {
+            label[0].setIcon(new ImageIcon("src/MenuPage.jpg"));
             label[6].setText("Rate Completed Entry");
             label[6].setVisible(true);
             for(i = 0; i < button.length; i++)
@@ -342,6 +350,7 @@ public class Control implements ActionListener
         }
         if(e.getSource()==button[14]) //MODIFY MEDIA
         {
+            label[0].setIcon(new ImageIcon("src/MenuPage.jpg"));
             label[6].setText("Modify Media");
             label[6].setVisible(true);
             for(i = 0; i < button.length; i++)
@@ -358,50 +367,62 @@ public class Control implements ActionListener
         }
         if(e.getSource()==button[15]) //VIEW LIBRARY: VIEW ALL
         {
+            label[0].setIcon(new ImageIcon("src/ViewAll.jpg"));
             //for example nothing
         }
         if(e.getSource()==button[16]) //VIEW LIBRARY: VIEW BY MOVIES
         {
+            label[0].setIcon(new ImageIcon("src/ViewMovie.jpg"));
             //for example nothing
         }
         if(e.getSource()==button[17]) //VIEW LIBRARY: VIEW BY ANIME
         {
+            label[0].setIcon(new ImageIcon("src/ViewAnime.jpg"));
             //for example nothing
         }
         if(e.getSource()==button[18]) //VIEW LIBRARY: VIEW BY MANGA
         {
+            label[0].setIcon(new ImageIcon("src/ViewManga.jpg"));
             //for example nothing
         }
         if(e.getSource()==button[19]) //ADD TO LIBRARY: ADD MOVIE
         {
+            label[0].setIcon(new ImageIcon("src/AddMedia.jpg"));
             //for example nothing
         }
         if(e.getSource()==button[20]) //ADD TO LIBRARY: ADD ANIME
         {
+            label[0].setIcon(new ImageIcon("src/AddMedia.jpg"));
             //for example nothing
         }
         if(e.getSource()==button[21]) //ADD TO LIBRARY: ADD MANGA
         {
+            label[0].setIcon(new ImageIcon("src/AddMedia.jpg"));
             //for example nothing
         }
         if(e.getSource()==button[22]) //RATE COMPLETED ENTRY: RATE MOVIE
         {
+            label[0].setIcon(new ImageIcon("src/AddTo.jpg"));
             //for example nothing
         }
         if(e.getSource()==button[23]) //RATE COMPLETED ENTRY: RATE ANIME
         {
+            label[0].setIcon(new ImageIcon("src/AddTo.jpg"));
             //for example nothing
         }
         if(e.getSource()==button[24]) //RATE COMPLETED ENTRY: RATE MANGA
         {
+            label[0].setIcon(new ImageIcon("src/AddTo.jpg"));
             //for example nothing
         }
         if(e.getSource()==button[25]) //MODIFY MEDIA: REMOVE MEDIA
         {
+            label[0].setIcon(new ImageIcon("src/Modify.jpg"));
             //for example nothing
         }
         if(e.getSource()==button[26]) //MODIFY MEDIA: CHANGE STATUS
         {
+            label[0].setIcon(new ImageIcon("src/Modify.jpg"));
             //for example nothing
         }
 
