@@ -1,8 +1,8 @@
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.*;
 
 public class Control implements ActionListener
 {
@@ -64,7 +64,7 @@ public class Control implements ActionListener
             button[0].setVisible(false);
             textFields[0].setVisible(true);
             textFields[1].setVisible(true);
-            label[0].setIcon(new ImageIcon("src/titlepage.jpg"));
+            label[0].setIcon(new ImageIcon("titlepage.jpg"));
             label[1].setVisible(true);
             label[2].setVisible(true);
             label[3].setVisible(true);
@@ -178,7 +178,7 @@ public class Control implements ActionListener
             textFields[0].setVisible(false);
             textFields[1].setVisible(false);
             passwordField.setVisible(false);
-            label[0].setIcon(new ImageIcon("src/createaccount.jpg"));
+            label[0].setIcon(new ImageIcon("createaccount.jpg"));
             for (i = 1; i < label.length; i++) {
                 label[i].setVisible(false);
             }
@@ -209,12 +209,12 @@ public class Control implements ActionListener
             textFields[0].setVisible(false);
             textFields[1].setVisible(false);
             passwordField.setVisible(false);
-            label[0].setIcon(new ImageIcon("src/MenuPage.jpg"));
+            label[0].setIcon(new ImageIcon("MenuPage.jpg"));
 
         }
         if (e.getSource() == button[7])//LOG OUT BUTTON
         {
-            label[0].setIcon(new ImageIcon("src/LogOut.jpg"));
+            label[0].setIcon(new ImageIcon("LogOut.jpg"));
             for (i = 0; i < button.length; i++) //Buttons
             {
                 if (i == 8 || i == 9) {
@@ -234,7 +234,7 @@ public class Control implements ActionListener
         }
         if (e.getSource() == button[8]) //LOG OUT
         {
-            label[0].setIcon(new ImageIcon("src/createaccount.jpg"));
+            label[0].setIcon(new ImageIcon("createaccount.jpg"));
             textFields[0].setVisible(false);
             textFields[1].setVisible(false);
             passwordField.setVisible(false);
@@ -256,7 +256,7 @@ public class Control implements ActionListener
         }
         if (e.getSource() == button[9]) //CANCEL
         {
-            label[0].setIcon(new ImageIcon("src/MenuPage.jpg"));
+            label[0].setIcon(new ImageIcon("MenuPage.jpg"));
             for (i = 1; i < label.length; i++) //Text
             {
                 if (i == 4) {
@@ -283,7 +283,7 @@ public class Control implements ActionListener
         }
         if(e.getSource()==button[10]) //VIEW LIBRARY
         {
-            label[0].setIcon(new ImageIcon("src/MenuPage.jpg"));
+            label[0].setIcon(new ImageIcon("MenuPage.jpg"));
             label[6].setText("View Library");
             label[6].setVisible(true);
             for(i = 0; i < button.length; i++)
@@ -298,7 +298,7 @@ public class Control implements ActionListener
         }
         if(e.getSource()==button[11]) //ADD LIBRARY
         {
-            label[0].setIcon(new ImageIcon("src/MenuPage.jpg"));
+            label[0].setIcon(new ImageIcon("MenuPage.jpg"));
             label[6].setText("Add Library");
             label[6].setVisible(true);
             for(i = 0; i < button.length; i++)
@@ -315,7 +315,7 @@ public class Control implements ActionListener
         }
         if(e.getSource()==button[12]) //VIEW STATS
         {
-            label[0].setIcon(new ImageIcon("src/MenuPage.jpg"));
+            label[0].setIcon(new ImageIcon("MenuPage.jpg"));
             label[6].setText("View Stats");
             label[6].setVisible(true);
             for(i = 0; i < button.length; i++)
@@ -333,7 +333,7 @@ public class Control implements ActionListener
         }
         if(e.getSource()==button[13]) //RATE COMPLETED ENTRY
         {
-            label[0].setIcon(new ImageIcon("src/MenuPage.jpg"));
+            label[0].setIcon(new ImageIcon("MenuPage.jpg"));
             label[6].setText("Rate Completed Entry");
             label[6].setVisible(true);
             for(i = 0; i < button.length; i++)
@@ -350,7 +350,7 @@ public class Control implements ActionListener
         }
         if(e.getSource()==button[14]) //MODIFY MEDIA
         {
-            label[0].setIcon(new ImageIcon("src/MenuPage.jpg"));
+            label[0].setIcon(new ImageIcon("MenuPage.jpg"));
             label[6].setText("Modify Media");
             label[6].setVisible(true);
             for(i = 0; i < button.length; i++)
@@ -367,62 +367,62 @@ public class Control implements ActionListener
         }
         if(e.getSource()==button[15]) //VIEW LIBRARY: VIEW ALL
         {
-            label[0].setIcon(new ImageIcon("src/ViewAll.jpg"));
+            label[0].setIcon(new ImageIcon("ViewAll.jpg"));
             //for example nothing
         }
         if(e.getSource()==button[16]) //VIEW LIBRARY: VIEW BY MOVIES
         {
-            label[0].setIcon(new ImageIcon("src/ViewMovie.jpg"));
+            label[0].setIcon(new ImageIcon("ViewMovie.jpg"));
             //for example nothing
         }
         if(e.getSource()==button[17]) //VIEW LIBRARY: VIEW BY ANIME
         {
-            label[0].setIcon(new ImageIcon("src/ViewAnime.jpg"));
+            label[0].setIcon(new ImageIcon("ViewAnime.jpg"));
             //for example nothing
         }
         if(e.getSource()==button[18]) //VIEW LIBRARY: VIEW BY MANGA
         {
-            label[0].setIcon(new ImageIcon("src/ViewManga.jpg"));
+            label[0].setIcon(new ImageIcon("ViewManga.jpg"));
             //for example nothing
         }
         if(e.getSource()==button[19]) //ADD TO LIBRARY: ADD MOVIE
         {
-            label[0].setIcon(new ImageIcon("src/AddMedia.jpg"));
+            label[0].setIcon(new ImageIcon("AddMedia.jpg"));
             //for example nothing
         }
         if(e.getSource()==button[20]) //ADD TO LIBRARY: ADD ANIME
         {
-            label[0].setIcon(new ImageIcon("src/AddMedia.jpg"));
+            label[0].setIcon(new ImageIcon("AddMedia.jpg"));
             //for example nothing
         }
         if(e.getSource()==button[21]) //ADD TO LIBRARY: ADD MANGA
         {
-            label[0].setIcon(new ImageIcon("src/AddMedia.jpg"));
+            label[0].setIcon(new ImageIcon("AddMedia.jpg"));
             //for example nothing
         }
         if(e.getSource()==button[22]) //RATE COMPLETED ENTRY: RATE MOVIE
         {
-            label[0].setIcon(new ImageIcon("src/AddTo.jpg"));
+            label[0].setIcon(new ImageIcon("AddTo.jpg"));
             //for example nothing
         }
         if(e.getSource()==button[23]) //RATE COMPLETED ENTRY: RATE ANIME
         {
-            label[0].setIcon(new ImageIcon("src/AddTo.jpg"));
+            label[0].setIcon(new ImageIcon("AddTo.jpg"));
             //for example nothing
         }
         if(e.getSource()==button[24]) //RATE COMPLETED ENTRY: RATE MANGA
         {
-            label[0].setIcon(new ImageIcon("src/AddTo.jpg"));
+            label[0].setIcon(new ImageIcon("AddTo.jpg"));
             //for example nothing
         }
         if(e.getSource()==button[25]) //MODIFY MEDIA: REMOVE MEDIA
         {
-            label[0].setIcon(new ImageIcon("src/Modify.jpg"));
+            label[0].setIcon(new ImageIcon("Modify.jpg"));
             //for example nothing
         }
         if(e.getSource()==button[26]) //MODIFY MEDIA: CHANGE STATUS
         {
-            label[0].setIcon(new ImageIcon("src/Modify.jpg"));
+            label[0].setIcon(new ImageIcon("Modify.jpg"));
             //for example nothing
         }
 

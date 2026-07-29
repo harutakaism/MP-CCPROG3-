@@ -1,5 +1,5 @@
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 public class GUI extends JFrame
 {
@@ -13,7 +13,7 @@ public class GUI extends JFrame
 
     GUI()
     {
-        picture = new ImageIcon("src/createaccount.jpg");
+        picture = new ImageIcon("createaccount.jpg");
 
         label[0] = new JLabel();
         label[0].setIcon(picture);
