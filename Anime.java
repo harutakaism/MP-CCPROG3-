@@ -1,4 +1,4 @@
-public class Anime
+public class Anime extends MediaEntry
 {
     private final String title;
     private int id = 100000;
@@ -78,6 +78,10 @@ public class Anime
     public int getSeason()
     {
         return season;
+    }
+    public String getMediaType()
+    {
+        return "Anime";
     }
     public void displayInfo()
     {

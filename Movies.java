@@ -1,4 +1,4 @@
-public class Movies
+public class Movies extends MediaEntry
 {
     private final String title;
     private int id = 800000;
@@ -120,6 +120,10 @@ public class Movies
     public int getDurationinmins()
     {
         return durationinmins;
+    }
+    public String getMediaType()
+    {
+        return "Movie";
     }
     /**
      * Method that displays all the info of a movie film.

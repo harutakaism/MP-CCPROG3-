@@ -241,5 +241,235 @@ public class Library
         }
         return null;
     }
+    public String getAllEntriesAsText()
+    {
+        String output = "ALL LIBRARY ENTRIES\n\n";
+
+        output += getAnimeAsText() + "\n";
+        output += getMangaAsText() + "\n";
+        output += getMoviesAsText();
+
+        return output;
+    }
+
+    public String getAnimeAsText()
+    {
+        String output = "ANIME\n\n";
+
+        if(anime.isEmpty())
+        {
+            output += "No anime entries.\n";
+        }
+        else
+        {
+            for(Anime item : anime)
+            {
+                output += animeToText(item) + "\n";
+            }
+        }
+
+        return output;
+    }
+
+    public String getMoviesAsText()
+    {
+        String output = "MOVIES\n\n";
+
+        if(movies.isEmpty())
+        {
+            output += "No movie entries.\n";
+        }
+        else
+        {
+            for(Movies item : movies)
+            {
+                output += movieToText(item) + "\n";
+            }
+        }
+
+        return output;
+    }
+
+    public String getMangaAsText()
+    {
+        String output = "MANGA / MANHWA / WEBTOON\n\n";
+
+        if(mangadesho.isEmpty())
+        {
+            output += "No manga/manhwa/webtoon entries.\n";
+        }
+        else
+        {
+            for(ManhwaToMangaDesu item : mangadesho)
+            {
+                output += mangaToText(item) + "\n";
+            }
+        }
+
+        return output;
+    }
+
+    public String getSummaryText()
+    {
+        int total = anime.size() + mangadesho.size() + movies.size();
+        int planned = 0;
+        int inProgress = 0;
+        int completed = 0;
+        float ratingSum = 0;
+        int ratedCompleted = 0;
+
+        for(Anime item : anime)
+        {
+            if(item.getStatus().equals("Planned"))
+            {
+                planned++;
+            }
+            else if(item.getStatus().equals("In Progress"))
+            {
+                inProgress++;
+            }
+            else if(item.getStatus().equals("Completed"))
+            {
+                completed++;
+
+                if(item.getRating().hasRating())
+                {
+                    ratingSum += item.getRating().GetOverallrating();
+                    ratedCompleted++;
+                }
+            }
+        }
+
+        for(ManhwaToMangaDesu item : mangadesho)
+        {
+            if(item.getStatus().equals("Planned"))
+            {
+                planned++;
+            }
+            else if(item.getStatus().equals("In Progress"))
+            {
+                inProgress++;
+            }
+            else if(item.getStatus().equals("Completed"))
+            {
+                completed++;
+
+                if(item.getRating().hasRating())
+                {
+                    ratingSum += item.getRating().GetOverallrating();
+                    ratedCompleted++;
+                }
+            }
+        }
+
+        for(Movies item : movies)
+        {
+            if(item.getStatus().equals("Planned"))
+            {
+                planned++;
+            }
+            else if(item.getStatus().equals("In Progress"))
+            {
+                inProgress++;
+            }
+            else if(item.getStatus().equals("Completed"))
+            {
+                completed++;
+
+                if(item.getRating().hasRating())
+                {
+                    ratingSum += item.getRating().GetOverallrating();
+                    ratedCompleted++;
+                }
+            }
+        }
+
+        String output = "LIBRARY SUMMARY\n\n";
+        output += "Total Entries: " + total + "\n";
+        output += "Anime Entries: " + anime.size() + "\n";
+        output += "Manga/Manhwa/Webtoon Entries: " + mangadesho.size() + "\n";
+        output += "Movie Entries: " + movies.size() + "\n";
+        output += "Planned: " + planned + "\n";
+        output += "In Progress: " + inProgress + "\n";
+        output += "Completed: " + completed + "\n";
+
+        if(ratedCompleted > 0)
+        {
+            output += "Average Rating of Completed Entries: " + (ratingSum / ratedCompleted) + "\n";
+        }
+        else
+        {
+            output += "Average Rating of Completed Entries: No ratings yet.\n";
+        }
+
+        return output;
+    }
+
+    private String movieToText(Movies movie)
+    {
+        String output = "";
+
+        output += "Title: " + movie.getTitle() + "\n";
+        output += "Studio: " + movie.getStudio() + "\n";
+        output += "Status: " + movie.getStatus() + "\n";
+        output += "Duration: " + movie.getDurationinmins() + " minutes\n";
+        output += "Rating: " + movie.getRating().GetOverallrating() + "\n";
+        output += "Description: " + movie.getDescription() + "\n";
+        output += "ID: " + movie.getID() + "\n";
+
+        return output;
+    }
+
+    private String animeToText(Anime animeEntry)
+    {
+        String output = "";
+
+        output += "Title: " + animeEntry.getTitle() + "\n";
+        output += "Studio: " + animeEntry.getStudio() + "\n";
+        output += "Status: " + animeEntry.getStatus() + "\n";
+        output += "Seasons: " + animeEntry.getSeason() + "\n";
+
+        int[] episodes = animeEntry.getEpisodes();
+
+        if(episodes != null)
+        {
+            for(int i = 0; i < animeEntry.getSeason(); i++)
+            {
+                output += "Season " + (i + 1) + ": " + episodes[i] + " episode/s\n";
+            }
+        }
+
+        output += "Rating: " + animeEntry.getRating().GetOverallrating() + "\n";
+        output += "Description: " + animeEntry.getDescription() + "\n";
+        output += "ID: " + animeEntry.getID() + "\n";
+
+        return output;
+    }
+
+    private String mangaToText(ManhwaToMangaDesu manga)
+    {
+        String output = "";
+
+        output += "Title: " + manga.getTitle() + "\n";
+        output += "Studio/Publisher: " + manga.getStudio() + "\n";
+        output += "Status: " + manga.getStatus() + "\n";
+        output += "Volumes: " + manga.getVolume() + "\n";
+
+        int[] chapters = manga.getChapter();
+
+        if(chapters != null)
+        {
+            for(int i = 0; i < manga.getVolume(); i++)
+            {
+                output += "Volume " + (i + 1) + ": " + chapters[i] + " chapter/s\n";
+            }
+        }
+
+        output += "Rating: " + manga.getRating().GetOverallrating() + "\n";
+        output += "Description: " + manga.getDescription() + "\n";
+        output += "ID: " + manga.getID() + "\n";
+
+        return output;
+    }
 }
 

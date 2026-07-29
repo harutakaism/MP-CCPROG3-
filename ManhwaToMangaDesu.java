@@ -1,4 +1,4 @@
-public class ManhwaToMangaDesu {
+public class ManhwaToMangaDesu extends MediaEntry {
         private final String title;
         private int id = 100000;
         private static int incre = 1;//Static to generate unique ID
@@ -74,6 +74,11 @@ public class ManhwaToMangaDesu {
 
         public int[] getChapter() {
             return chapter;
+        }
+
+        public String getMediaType()
+        {
+            return "Manga/Manhwa";
         }
 
         public void displayInfo()

@@ -33,6 +33,301 @@ public class Control implements ActionListener
         }
 
     }
+    private boolean hasLoggedInUser()
+    {
+        if(loginUser == null)
+        {
+            JOptionPane.showMessageDialog(guiFace, "Please log in first.");
+            return false;
+        }
+
+        return true;
+    }
+
+    private void showLargeMessage(String title, String message)
+    {
+        JTextArea textArea = new JTextArea(message);
+        textArea.setEditable(false);
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+
+        JScrollPane scrollPane = new JScrollPane(textArea);
+        scrollPane.setPreferredSize(new Dimension(500, 400));
+
+        JOptionPane.showMessageDialog(guiFace, scrollPane, title, JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    private void addMovieThroughDialog()
+    {
+        if(!hasLoggedInUser())
+        {
+            return;
+        }
+
+        try
+        {
+            String title = JOptionPane.showInputDialog(guiFace, "Enter movie title:");
+
+            if(title == null || title.trim().isEmpty())
+            {
+                JOptionPane.showMessageDialog(guiFace, "Movie title cannot be blank.");
+                return;
+            }
+
+            String studio = JOptionPane.showInputDialog(guiFace, "Enter studio/production:");
+
+            if(studio == null || studio.trim().isEmpty())
+            {
+                JOptionPane.showMessageDialog(guiFace, "Studio cannot be blank.");
+                return;
+            }
+
+            String durationText = JOptionPane.showInputDialog(guiFace, "Enter duration in minutes:");
+
+            if(durationText == null || durationText.trim().isEmpty())
+            {
+                JOptionPane.showMessageDialog(guiFace, "Duration cannot be blank.");
+                return;
+            }
+
+            int duration = Integer.parseInt(durationText);
+
+            if(duration < 0)
+            {
+                JOptionPane.showMessageDialog(guiFace, "Duration cannot be negative.");
+                return;
+            }
+
+            String[] statusChoices = {"Planned", "In Progress", "Completed"};
+
+            String status = (String) JOptionPane.showInputDialog(
+                    guiFace,
+                    "Choose status:",
+                    "Movie Status",
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    statusChoices,
+                    statusChoices[0]
+            );
+
+            if(status == null)
+            {
+                return;
+            }
+
+            String description = JOptionPane.showInputDialog(guiFace, "Enter description:");
+
+            Movies movie = new Movies(title, studio, duration, status);
+
+            if(description != null)
+            {
+                movie.setDescription(description);
+            }
+
+            loginUser.getLibrary().addMovie(movie);
+
+            JOptionPane.showMessageDialog(guiFace, "Movie added successfully!\nMovie ID: " + movie.getID());
+        }
+        catch(NumberFormatException ex)
+        {
+            JOptionPane.showMessageDialog(guiFace, "Invalid duration. Please enter a number.");
+        }
+    }
+    private void addAnimeThroughDialog()
+    {
+        if(!hasLoggedInUser())
+        {
+            return;
+        }
+
+        try
+        {
+            String title = JOptionPane.showInputDialog(guiFace, "Enter anime title:");
+
+            if(title == null || title.trim().isEmpty())
+            {
+                JOptionPane.showMessageDialog(guiFace, "Anime title cannot be blank.");
+                return;
+            }
+
+            String studio = JOptionPane.showInputDialog(guiFace, "Enter studio:");
+
+            if(studio == null || studio.trim().isEmpty())
+            {
+                JOptionPane.showMessageDialog(guiFace, "Studio cannot be blank.");
+                return;
+            }
+
+            String seasonText = JOptionPane.showInputDialog(guiFace, "Enter number of seasons:");
+            
+            if(seasonText == null || seasonText.trim().isEmpty())
+            {
+                JOptionPane.showMessageDialog(guiFace, "Number of seasons cannot be blank.");
+                return;
+            }
+
+            int season = Integer.parseInt(seasonText);
+
+            if(season < 0)
+            {
+                JOptionPane.showMessageDialog(guiFace, "Number of seasons cannot be negative.");
+                return;
+            }
+
+            int[] episodes = new int[season];
+
+            for(int i = 0; i < season; i++)
+            {
+                String episodeText = JOptionPane.showInputDialog(guiFace, "Enter episodes for Season " + (i + 1) + ":");
+
+                if(episodeText == null || episodeText.trim().isEmpty())
+                {
+                    JOptionPane.showMessageDialog(guiFace, "Episode count cannot be blank.");
+                    return;
+                }
+
+                episodes[i] = Integer.parseInt(episodeText);
+
+                if(episodes[i] < 0)
+                {
+                    JOptionPane.showMessageDialog(guiFace, "Episode count cannot be negative.");
+                    return;
+                }
+            }
+
+            String[] statusChoices = {"Planned", "In Progress", "Completed"};
+
+            String status = (String) JOptionPane.showInputDialog(
+                    guiFace,
+                    "Choose status:",
+                    "Anime Status",
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    statusChoices,
+                    statusChoices[0]
+            );
+
+            if(status == null)
+            {
+                return;
+            }
+
+            String description = JOptionPane.showInputDialog(guiFace, "Enter description:");
+
+            Anime anime = new Anime(title, studio, episodes, season, status);
+
+            if(description != null)
+            {
+                anime.setDescription(description);
+            }
+
+            loginUser.getLibrary().addAnime(anime);
+
+            JOptionPane.showMessageDialog(guiFace, "Anime added successfully!\nAnime ID: " + anime.getID());
+        }
+        catch(NumberFormatException ex)
+        {
+            JOptionPane.showMessageDialog(guiFace, "Invalid number. Please enter numbers only.");
+        }
+    }
+
+    private void addMangaThroughDialog()
+    {
+        if(!hasLoggedInUser())
+        {
+            return;
+        }
+
+        try
+        {
+            String title = JOptionPane.showInputDialog(guiFace, "Enter manga/manhwa/webtoon title:");
+
+            if(title == null || title.trim().isEmpty())
+            {
+                JOptionPane.showMessageDialog(guiFace, "Title cannot be blank.");
+                return;
+            }
+
+            String studio = JOptionPane.showInputDialog(guiFace, "Enter publisher/studio:");
+
+            if(studio == null || studio.trim().isEmpty())
+            {
+                JOptionPane.showMessageDialog(guiFace, "Publisher/studio cannot be blank.");
+                return;
+            }
+
+            String volumeText = JOptionPane.showInputDialog(guiFace, "Enter number of volumes:");
+            
+            if(volumeText == null || volumeText.trim().isEmpty())
+            {
+                JOptionPane.showMessageDialog(guiFace, "Number of volumes cannot be blank.");
+                return;
+            }
+
+            int volume = Integer.parseInt(volumeText);
+
+            if(volume < 0)
+            {
+                JOptionPane.showMessageDialog(guiFace, "Number of volumes cannot be negative.");
+                return;
+            }
+
+            int[] chapters = new int[volume];
+
+            for(int i = 0; i < volume; i++)
+            {
+                String chapterText = JOptionPane.showInputDialog(guiFace, "Enter chapters for Volume " + (i + 1) + ":");
+
+                if(chapterText == null || chapterText.trim().isEmpty())
+                {
+                    JOptionPane.showMessageDialog(guiFace, "Chapter count cannot be blank.");
+                    return;
+                }
+
+                chapters[i] = Integer.parseInt(chapterText);
+
+                if(chapters[i] < 0)
+                {
+                    JOptionPane.showMessageDialog(guiFace, "Chapter count cannot be negative.");
+                    return;
+                }
+            }
+
+            String[] statusChoices = {"Planned", "In Progress", "Completed"};
+
+            String status = (String) JOptionPane.showInputDialog(
+                    guiFace,
+                    "Choose status:",
+                    "Manga/Manhwa Status",
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    statusChoices,
+                    statusChoices[0]
+            );
+
+            if(status == null)
+            {
+                return;
+            }
+
+            String description = JOptionPane.showInputDialog(guiFace, "Enter description:");
+
+            ManhwaToMangaDesu manga = new ManhwaToMangaDesu(title, studio, volume, status, chapters);
+
+            if(description != null)
+            {
+                manga.setDescription(description);
+            }
+
+            loginUser.getLibrary().addManga(manga);
+
+            JOptionPane.showMessageDialog(guiFace, "Manga/Manhwa added successfully!\nEntry ID: " + manga.getID());
+        }
+        catch(NumberFormatException ex)
+        {
+            JOptionPane.showMessageDialog(guiFace, "Invalid number. Please enter numbers only.");
+        }
+    }
     public void setLayeredPanel(JLayeredPane panelold, JLayeredPane panelnew)
     {
         guiFace.remove(panelold);
@@ -329,6 +624,10 @@ public class Control implements ActionListener
                     button[i].setVisible(false);
                 }
             }
+            if(hasLoggedInUser())
+            {
+                showLargeMessage("Library Stats", loginUser.getLibrary().getSummaryText());
+            }
 
         }
         if(e.getSource()==button[13]) //RATE COMPLETED ENTRY
@@ -368,37 +667,53 @@ public class Control implements ActionListener
         if(e.getSource()==button[15]) //VIEW LIBRARY: VIEW ALL
         {
             label[0].setIcon(new ImageIcon("ViewAll.jpg"));
-            //for example nothing
+
+            if(hasLoggedInUser())
+            {
+                showLargeMessage("View All Entries", loginUser.getLibrary().getAllEntriesAsText());
+            }
         }
         if(e.getSource()==button[16]) //VIEW LIBRARY: VIEW BY MOVIES
         {
             label[0].setIcon(new ImageIcon("ViewMovie.jpg"));
-            //for example nothing
+
+            if(hasLoggedInUser())
+            {
+                showLargeMessage("View Movies", loginUser.getLibrary().getMoviesAsText());
+            }
         }
         if(e.getSource()==button[17]) //VIEW LIBRARY: VIEW BY ANIME
         {
             label[0].setIcon(new ImageIcon("ViewAnime.jpg"));
-            //for example nothing
+            
+            if(hasLoggedInUser())
+            {
+                showLargeMessage("View Anime", loginUser.getLibrary().getAnimeAsText());
+            }
         }
         if(e.getSource()==button[18]) //VIEW LIBRARY: VIEW BY MANGA
         {
             label[0].setIcon(new ImageIcon("ViewManga.jpg"));
-            //for example nothing
+            
+            if(hasLoggedInUser())
+            {
+                showLargeMessage("View Manga/Manhwa", loginUser.getLibrary().getMangaAsText());
+            }
         }
         if(e.getSource()==button[19]) //ADD TO LIBRARY: ADD MOVIE
         {
             label[0].setIcon(new ImageIcon("AddMedia.jpg"));
-            //for example nothing
+            addMovieThroughDialog();
         }
         if(e.getSource()==button[20]) //ADD TO LIBRARY: ADD ANIME
         {
             label[0].setIcon(new ImageIcon("AddMedia.jpg"));
-            //for example nothing
+            addAnimeThroughDialog();
         }
         if(e.getSource()==button[21]) //ADD TO LIBRARY: ADD MANGA
         {
             label[0].setIcon(new ImageIcon("AddMedia.jpg"));
-            //for example nothing
+            addMangaThroughDialog();
         }
         if(e.getSource()==button[22]) //RATE COMPLETED ENTRY: RATE MOVIE
         {
