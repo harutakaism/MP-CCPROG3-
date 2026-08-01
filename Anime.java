@@ -1,33 +1,23 @@
-public class Anime extends MediaEntry
-{
+public class Anime extends MediaEntry {
     private final String title;
     private int id = 100000;
     private static int incre = 0; //Static to generate unique ID
     private final String studio;
     private Rating rating = new Rating(); //Anime Rating
     private String description;
-    private String status = "Planned";
-    private int durationinmins;
+    private String status;
     private int season;
     private int[] episodes;
     private int sum;
 
-    //Constructor Methods here
-    public Anime(String title, String studio, String status)
-    {
-        this.title = title;
-        this.studio = studio;
-        this.status = status;
-        incre++;
-        this.id = id + incre;
-    }
-    public Anime(String title, String studio)
-    {
-        this.title = title;
-        this.studio = studio;
-        incre++;
-        this.id = id + incre;
-    }
+    /**
+     * Anime is a constructor with 5 parameters that instantiate a new object of type Anime
+     * @param title is the title/name of the Anime
+     * @param studio is the studio/production that made or produced the Anime
+     * @param episodes is the number of episodes stored in an array, dependent on the number of seasons
+     * @param season is the number of seasons an Anime contains
+     * @param status is the status of the Anime (Planned, Completed, In Progress)
+     */
     public Anime(String title, String studio, int[] episodes, int season, String status)
     {
         this.title = title;
@@ -38,97 +28,107 @@ public class Anime extends MediaEntry
         incre++;
         this.id = id + incre;
     }
-    //Getter Methods here
+    /**
+     * getDescription is a getter method that returns the description of the Anime
+     * @return the string containing description of the Anime
+     */
     public String getDescription()
     {
         return description;
     }
+    /**
+     * getStatus is a getter method that returns the status of the Anime
+     * @return the string containing the status of the Anime (planned, in progress or completed)
+     */
     public String getStatus()
     {
         return status;
     }
-    public String getEpisodedescription()
-    {
-        return description;
-    }
+    /**
+     * getEpisodes is a getter method that returns the number of episodes per season (in fixed array form)
+     * @return the array of integers containing the number of episodes per season
+     */
     public int[] getEpisodes()
     {
         return episodes;
     }
+
+    /**
+     * getID is a getter method that returns the ID of the Anime
+     * @return the ID number
+     */
     public int getID()
     {
         return id;
     }
+
+    /**
+     * getTitle is a getter method that returns the title name of the Anime
+     * @return the title name of the Anime
+     */
     public String getTitle()
     {
         return title;
     }
+
+    /**
+     * getStudio is a getter method that returns the studio/production that created the Anime
+     * @return the studio/production of the Anime
+     */
     public String getStudio()
     {
         return studio;
     }
+    /**
+     * getRating is a getter method that returns the rating (as an object)
+     * @return the object Rating for rating-related information
+     */
     public Rating getRating()
     {
         return rating;
     }
-    public int getDurationinmins()
-    {
-        return durationinmins;
-    }
+
+    /**
+     *  getSeason is a getter method that returns the number of seasons
+     * @return the number of seasons an Anime contains
+     */
     public int getSeason()
     {
         return season;
     }
+    /**
+     * getMediaType is a getter method that returns the type of media (Anime)
+     * @return "Anime" since media type of the objects under this class are anime
+     */
     public String getMediaType()
     {
         return "Anime";
     }
-    public void displayInfo()
-    {
+    /**
+     * displayInfo is a method that displays the overall information of an Anime
+     */
+    public void displayInfo() {
         System.out.println(title);
         System.out.println("Production Studio: " + studio);
         System.out.println("Rating: " + rating.GetOverallrating());
         System.out.println("Seasons: " + season);
         System.out.println();
-        for(int i = 0; i < season; i++)
-        {
-            System.out.println("Season " + (i+1) + ":" + episodes[i] + " Episode/s");
+        for (int i = 0; i < season; i++) {
+            System.out.println("Season " + (i + 1) + ":" + episodes[i] + " Episode/s");
             sum += episodes[i];
         }
         System.out.println("Total Episodes: " + sum);
         System.out.println();
         System.out.println("Status: " + status);
         System.out.println("Description: " + description);
-        System.out.println("ID: " + id );
+        System.out.println("ID: " + id);
     }
-    public void setStatus(String strNewstatus)
-    {
-        this.status = strNewstatus;
-    }
+    /**
+     * setDescription is a setter Method that sets the description of an Anime
+     * @param strNewdescription is the new description to be set
+     */
     public void setDescription(String strNewdescription)
     {
         this.description = strNewdescription;
-    }
-    public void rateMedia(int UserRate)
-    {
-        if(status.equals("Completed"))
-        {
-            rating.Rate(UserRate);
-        }
-        else
-        {
-            System.out.println("Only completed entries can be rated.");
-        }
-    }
-    public void addReview(String review)
-    {
-        if(status.equals("Completed"))
-        {
-            rating.setReview(review);
-        }
-        else
-        {
-            System.out.println("Only completed entries can have reviews.");
-        }
     }
 }
