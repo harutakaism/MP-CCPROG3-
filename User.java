@@ -8,6 +8,7 @@ public class User
     private String bio;
 
     /**
+     * User is a constructor with 2 parameters (username and password).
      * Creates a new User with username and password as parameter.
      *
      * @param username is user's chosen username
@@ -22,7 +23,7 @@ public class User
     }
 
     /**
-     * Getter Method that returns the ID
+     * getId is a Getter Method that returns the ID
      *
      * @return the number for the ID of a User
      */
@@ -31,7 +32,7 @@ public class User
         return id;
     }
     /**
-     * Getter Method that returns the Username
+     * getUsername is a Getter Method that returns the Username
      *
      * @return the string of the user's Username
      */
@@ -40,7 +41,7 @@ public class User
         return username;
     }
     /**
-     * Getter Method that returns the Library
+     * getLibrary is a Getter Method that returns the Library
      *
      * @return the library of the user that holds its saved media pieces.
      */
@@ -49,7 +50,7 @@ public class User
         return library;
     }
     /**
-     * Getter Method that returns the Password
+     * getPassword is a Getter Method that returns the Password
      *
      * @return the String password of a user
      */
@@ -58,7 +59,7 @@ public class User
         return password;
     }
     /**
-     * Getter Method that returns the Biography of a user
+     * getBio is aGetter Method that returns the Biography of a user
      *
      * @return the string of a user's Bio
      */
