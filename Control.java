@@ -6,7 +6,7 @@ import javax.swing.*;
 
 public class Control implements ActionListener
 {
-    private JLayeredPane panel, panel1;
+    private JLayeredPane panel1;
     private JLabel[] label;
     private JButton[] button;
     private JTextField[] textFields;
@@ -18,6 +18,11 @@ public class Control implements ActionListener
     User loginUser;
     GUI guiFace;
 
+    /**
+     * Control() is a no-parameter constructor that creates the class that acts as a communicator between the frontend and the
+     * backend. This is also where the button actions are placed. This function/constructor creates a new
+     * object of the Control class.
+     */
     Control()
     {
         this.guiFace = new GUI();
@@ -26,13 +31,15 @@ public class Control implements ActionListener
         this.textFields = guiFace.getTextFields();
         this.passwordField = guiFace.getPasswordField();
         this.panel1 = guiFace.getPanel1();
-
         for(i = 0;i < button.length; i++)
         {
             button[i].addActionListener(this);
         }
-
     }
+    /**
+     * hasLoggedInUser is a function that checks whether a user is currently logged-in
+     * @return true if there is a logged-in user, otherwise return false.
+     */
     private boolean hasLoggedInUser()
     {
         if(loginUser == null)
@@ -43,7 +50,11 @@ public class Control implements ActionListener
 
         return true;
     }
-
+    /**
+     * showLargeMessage is a function that displays a tab that is often used for the viewing of media.
+     * @param title is the name of the action to be done by the user
+     * @param message is the string containing all the information to display
+     */
     private void showLargeMessage(String title, String message)
     {
         JTextArea textArea = new JTextArea(message);
@@ -56,7 +67,10 @@ public class Control implements ActionListener
 
         JOptionPane.showMessageDialog(guiFace, scrollPane, title, JOptionPane.INFORMATION_MESSAGE);
     }
-
+    /**
+     * addMovieThroughDialog is a method that adds a Movie via a dialog that processes what the user wants to add by
+     * including the details necessary to create a Movie object, can only perform when a specific button is pressed.
+     */
     private void addMovieThroughDialog()
     {
         if(!hasLoggedInUser())
@@ -133,6 +147,10 @@ public class Control implements ActionListener
             JOptionPane.showMessageDialog(guiFace, "Invalid duration. Please enter a number.");
         }
     }
+    /**
+     * addAnimeThroughDialog is a method that adds a Anime via a dialog that processes what the user wants to add by
+     * including the details necessary to create a Anime object, can only perform when a specific button is pressed.
+     */
     private void addAnimeThroughDialog()
     {
         if(!hasLoggedInUser())
@@ -159,7 +177,7 @@ public class Control implements ActionListener
             }
 
             String seasonText = JOptionPane.showInputDialog(guiFace, "Enter number of seasons:");
-            
+
             if(seasonText == null || seasonText.trim().isEmpty())
             {
                 JOptionPane.showMessageDialog(guiFace, "Number of seasons cannot be blank.");
@@ -230,7 +248,10 @@ public class Control implements ActionListener
             JOptionPane.showMessageDialog(guiFace, "Invalid number. Please enter numbers only.");
         }
     }
-
+    /**
+     * addMangaThroughDialog is a method that adds a Manga via a dialog that processes what the user wants to add by
+     * including the details necessary to create a Manga object, can only perform when a specific button is pressed.
+     */
     private void addMangaThroughDialog()
     {
         if(!hasLoggedInUser())
@@ -257,7 +278,7 @@ public class Control implements ActionListener
             }
 
             String volumeText = JOptionPane.showInputDialog(guiFace, "Enter number of volumes:");
-            
+
             if(volumeText == null || volumeText.trim().isEmpty())
             {
                 JOptionPane.showMessageDialog(guiFace, "Number of volumes cannot be blank.");
@@ -328,12 +349,11 @@ public class Control implements ActionListener
             JOptionPane.showMessageDialog(guiFace, "Invalid number. Please enter numbers only.");
         }
     }
-    public void setLayeredPanel(JLayeredPane panelold, JLayeredPane panelnew)
-    {
-        guiFace.remove(panelold);
-        guiFace.add(panelnew);
-        panelnew.setVisible(true);
-    }
+
+    /**
+     * actionPerformed is a method that performs specific actions depending on the button pressed by the user
+     * @param e the event to be processed through a button object
+     */
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == button[0]) //TO LOGIN
         {
@@ -562,14 +582,14 @@ public class Control implements ActionListener
             }
             for (i = 0; i < button.length; i++) //Button
             {
-            if (i == 7 || (i < 15 && i > 9))
-            {
-                 button[i].setVisible(true);
-            }
-            else
-            {
-                 button[i].setVisible(false);
-            }
+                if (i == 7 || (i < 15 && i > 9))
+                {
+                    button[i].setVisible(true);
+                }
+                else
+                {
+                    button[i].setVisible(false);
+                }
 
             }
             textFields[0].setVisible(false);
@@ -685,7 +705,7 @@ public class Control implements ActionListener
         if(e.getSource()==button[17]) //VIEW LIBRARY: VIEW BY ANIME
         {
             label[0].setIcon(new ImageIcon("ViewAnime.jpg"));
-            
+
             if(hasLoggedInUser())
             {
                 showLargeMessage("View Anime", loginUser.getLibrary().getAnimeAsText());
@@ -694,7 +714,7 @@ public class Control implements ActionListener
         if(e.getSource()==button[18]) //VIEW LIBRARY: VIEW BY MANGA
         {
             label[0].setIcon(new ImageIcon("ViewManga.jpg"));
-            
+
             if(hasLoggedInUser())
             {
                 showLargeMessage("View Manga/Manhwa", loginUser.getLibrary().getMangaAsText());
