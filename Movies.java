@@ -10,8 +10,8 @@ public class Movies extends MediaEntry
     private int durationinmins;
 
     /**
+     * Movies is a constructor with three parameters (title, studio, duration) and
      * Constructs the Movie Object given its title, studio and duration
-     *
      * @param title the name of a movie
      * @param studio the name of the studio
      * @param durationinmins the duration of a movie
@@ -26,8 +26,8 @@ public class Movies extends MediaEntry
 
     }
     /**
-     * Constructs the Movie Object given its title, studio and duration, and status
-     *
+     * Movies is a constructor with four parameters (title, studio, duration, status) and Constructs the Movie 
+     * Object given its title, studio and duration, and status
      * @param title the name of a movie
      * @param studio the name of the studio
      * @param durationinmins the duration of a movie
@@ -43,8 +43,8 @@ public class Movies extends MediaEntry
         this.id = id + incre;
     }
     /**
-     * Constructs the Movie Object given its title, studio and duration, and status
-     *
+     * Movies is a constructor with three parameters (title, studio, status) and Constructs the Movie Object given 
+     * its title, studio and duration, and status
      * @param title the name of a movie
      * @param studio the name of the studio
      * @param status is the progress of the movie
@@ -59,8 +59,7 @@ public class Movies extends MediaEntry
 
     }
     /**
-     * Getter Method that returns the status
-     *
+     * getStatus is a getter method that returns the status
      * @return the watch status or progress of a movie.
      */
     public String getStatus()
@@ -68,8 +67,7 @@ public class Movies extends MediaEntry
         return status;
     }
     /**
-     * Getter Method that returns the description
-     *
+     * getDescription is a getter method that returns the description
      * @return the string of the description of the movie.
      */
     public String getDescription()
@@ -77,8 +75,7 @@ public class Movies extends MediaEntry
         return description;
     }
     /**
-     * Getter Method that returns the ID
-     *
+     * getID is a getter method that returns the ID
      * @return the ID value
      */
     public int getID()
@@ -86,8 +83,7 @@ public class Movies extends MediaEntry
         return id;
     }
     /**
-     * Getter Method that returns the title
-     *
+     * getTitle is a getter method that returns the title
      * @return the string of the name/title of movie
      */
     public String getTitle()
@@ -95,17 +91,15 @@ public class Movies extends MediaEntry
         return title;
     }
     /**
-     * Getter Method that returns the name of studio/production
-     *
-     * @return the status or progress of a movie.
+     * getStudio is a getter method that returns the name of studio/production
+     * @return the name of the studio/production
      */
     public String getStudio()
     {
         return studio;
     }
     /**
-     * Getter Method that returns the rating
-     *
+     * getRating is a getter method that returns the rating
      * @return the rating (not the integer).
      */
     public Rating getRating()
@@ -113,21 +107,24 @@ public class Movies extends MediaEntry
         return rating;
     }
     /**
-     * Getter Method that returns the duration of a movie in minutes
-     *
+     * getDurationinmins is a Getter Method that returns the duration of a movie in minutes
      * @return the int duration in minutes.
      */
     public int getDurationinmins()
     {
         return durationinmins;
     }
+
+    /**
+     * getMediaType is a Getter method that returns the type of media
+     * @return "movies" since the class falls under movie.
+     */
     public String getMediaType()
     {
         return "Movie";
     }
     /**
-     * Method that displays all the info of a movie film.
-     *
+     * displayInfo is a Method that displays all the info of a movie film
      */
     public void displayInfo()
     {
@@ -172,17 +169,15 @@ public class Movies extends MediaEntry
     }
 
     /**
-     * Setter Method that sets the Status
-     *
-     * @param strStatus is the new status/progress of the watching of the movie.
+     * strNewstatus is a Setter Method that sets the Status
+     * @param strNewstatus is the new status/progress of the watching of the movie.
      */
     public void setStatus(String strNewstatus)
     {
         this.status = strNewstatus;
     }
     /**
-     * Setter Method that sets the description
-     *
+     * setDescription is a setter Method that sets the description
      * @param strNewdescription is the new description to place
      */
     public void setDescription(String strNewdescription)
@@ -190,9 +185,8 @@ public class Movies extends MediaEntry
         this.description = strNewdescription;
     }
     /**
-     * Function that allows the user to give a rating given it is valid
-     *
-     * @param UserRate is the rating of user
+     * rateMedia is a function that allows the user to give a rating given it is valid
+     * @param UserRate is the rating of user (in integer form)
      */
     public void rateMedia(int UserRate)
     {
@@ -206,8 +200,7 @@ public class Movies extends MediaEntry
         }
     }
     /**
-     * Setter Method that sets the review of a movie
-     *
+     * addReview is a Setter Method that sets the review of a movie
      * @param review is the review in string form to set.
      */
     public void addReview(String review)
