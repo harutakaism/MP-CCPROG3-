@@ -1,71 +1,101 @@
-public class User
+public class Rating
 {
-    private int id = 100000000;
-    private static int incre = 0;
-    private String username;
-    private Library library = new Library();
-    private String password;
-    private String bio;
+    private int numberofratings;
+    private float overallrating;
+    private int sum;
+    private int recentrate;
+    private String review;
 
     /**
-     * User is a constructor with 2 parameters (username and password).
-     * Creates a new User with username and password as parameter.
+     * Rating() is a no parameter constructor that creates the ratings to be used for the media types
      *
-     * @param username is user's chosen username
-     * @param password is user's chosen password
      */
-    User(String username, String password)
+    public Rating()
     {
-        this.username = username;
-        this.password = password;
-        incre++;
-        this.id = id + incre;
+        numberofratings = 0;
+        overallrating = 0.0f;
+        sum = 0;
+        recentrate = 0;
+        review = "";
+    }
+    /**
+     * getNumberOfRatings is a Getter Method that returns the number of ratings
+     *
+     * @return the number of ratings a piece has received.
+     */
+    public int getNumberOfRatings()
+    {
+        return numberofratings;
+    }
+    /**
+     * getOverallrating is a Getter Method that returns the average rating
+     *
+     * @return the average rating of a piece.
+     */
+    public float GetOverallrating()
+    {
+        return overallrating;
+    }
+    /**
+     * getRecentRate is a Getter Method that returns the rating score recently
+     *
+     * @return the recently given rating
+     */
+    public int getRecentrate()
+    {
+        return recentrate;
+    }
+    /**
+     * getReview is a Getter Method that returns the review of a piece.
+     *
+     * @return the string that contains the review of a piece.
+     */
+    public String getReview()
+    {
+        return review;
     }
 
     /**
-     * getId is a Getter Method that returns the ID
+     * hasRating is a Method that checks if a media piece has a rating or not.
      *
-     * @return the number for the ID of a User
+     * @return the boolean value whether it has a rating or not.
      */
-    public int getId()
+    public boolean hasRating()
     {
-        return id;
+        return numberofratings > 0;
     }
+
     /**
-     * getUsername is a Getter Method that returns the Username
+     * setReview is a Setter Method that sets the string for review
      *
-     * @return the string of the user's Username
+     * @param review the review to add to the media piece during rating period.
      */
-    public String getUsername()
+    public void setReview(String review)
     {
-        return username;
+        this.review = review;
+        System.out.println("Review added!");
     }
+
     /**
-     * getLibrary is a Getter Method that returns the Library
+     * Rate allows the user to rate a specific media piece by passing its rating as a parameter and contribute it to
+     * the overall rating of the media piece.
      *
-     * @return the library of the user that holds its saved media pieces.
+     * @param UserRate the users given rating on a specific media piece
      */
-    public Library getLibrary()
+    public void Rate(int UserRate)
     {
-        return library;
-    }
-    /**
-     * getPassword is a Getter Method that returns the Password
-     *
-     * @return the String password of a user
-     */
-    public String getPassword()
-    {
-        return password;
-    }
-    /**
-     * getBio is aGetter Method that returns the Biography of a user
-     *
-     * @return the string of a user's Bio
-     */
-    public String getBio()
-    {
-        return bio;
+        if(UserRate > 10 || UserRate < 1)
+        {
+            System.out.println("Rating voided: Please rate from 1-10");
+        }
+        else
+        {
+            recentrate = UserRate;
+            numberofratings++;
+            sum += UserRate;
+            overallrating = (float)sum / numberofratings;
+            System.out.println("Rating added!");
+        }
     }
 
 }
