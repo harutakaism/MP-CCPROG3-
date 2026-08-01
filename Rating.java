@@ -5,9 +5,9 @@ public class Rating
     private int sum;
     private int recentrate;
     private String review;
-    
+
     /**
-     * Constructor that creates the ratings to be used for the media types
+     * Rating() is a no parameter constructor that creates the ratings to be used for the media types
      *
      */
     public Rating()
@@ -19,16 +19,16 @@ public class Rating
         review = "";
     }
     /**
-     * Getter Method that returns the number of ratings
+     * getNumberOfRatings is a Getter Method that returns the number of ratings
      *
-     * @return ther number of ratings a piece has recieved.
+     * @return the number of ratings a piece has received.
      */
     public int getNumberOfRatings()
     {
         return numberofratings;
     }
     /**
-     * Getter Method that returns the average rating
+     * getOverallrating is a Getter Method that returns the average rating
      *
      * @return the average rating of a piece.
      */
@@ -37,7 +37,7 @@ public class Rating
         return overallrating;
     }
     /**
-     * Getter Method that returns the rating score recently
+     * getRecentRate is a Getter Method that returns the rating score recently
      *
      * @return the recently given rating
      */
@@ -46,7 +46,7 @@ public class Rating
         return recentrate;
     }
     /**
-     * Getter Method that returns the review of a piece.
+     * getReview is a Getter Method that returns the review of a piece.
      *
      * @return the string that contains the review of a piece.
      */
@@ -56,7 +56,7 @@ public class Rating
     }
 
     /**
-     * Method that checks if a media piece has a rating or not.
+     * hasRating is a Method that checks if a media piece has a rating or not.
      *
      * @return the boolean value whether it has a rating or not.
      */
@@ -66,7 +66,7 @@ public class Rating
     }
 
     /**
-     * Setter Method that sets the string for review
+     * setReview is a Setter Method that sets the string for review
      *
      * @param review the review to add to the media piece during rating period.
      */
@@ -76,10 +76,10 @@ public class Rating
         System.out.println("Review added!");
     }
 
-     /**
-     * Allows the user to rate a specific media piece by passing its rating as a parameter and contribute it to
+    /**
+     * Rate allows the user to rate a specific media piece by passing its rating as a parameter and contribute it to
      * the overall rating of the media piece.
-     * 
+     *
      * @param UserRate the users given rating on a specific media piece
      */
     public void Rate(int UserRate)
