@@ -11,7 +11,8 @@ public class ManhwaToMangaDesu extends MediaEntry {
     private String status;
     private int[] chapter;
     private ArrayList<EpisodeChapter> chapters = new ArrayList<>();
-    int chapterincrement;
+    private int chapterincrement;
+    private int refreshcount;
 
     /**
      * ManhwaToMangaDesu is a constructor with 5 parameters (title, studio, volume, status, chapter)
@@ -118,9 +119,12 @@ public class ManhwaToMangaDesu extends MediaEntry {
         for(int i = 0; i < volume; i++)
         {
             System.out.println("Number of Chapters in Volume " + (i+1) + ": " + chapter[i]);
-            System.out.println("Episode " + (i+1) + ": " + chapters.get(chapterincrement).getTitle() );
-            System.out.println("Description of Episode " + (i+1) + ": " + chapters.get(chapterincrement).getDescription() );
-            chapterincrement++;
+            for(int j = 0; j < chapter[i]; i++) 
+            {
+                System.out.println("Episode " + (j + 1) + ": " + chapters.get(chapterincrement).getTitle());
+                System.out.println("Description of Episode " + (refreshcount + 1) + ": " + chapters.get(chapterincrement).getDescription());
+                chapterincrement++;
+            }
         }
         chapterincrement = 0;
         System.out.println("Status: " + status);
