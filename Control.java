@@ -1,7 +1,12 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Scanner;
 import javax.swing.*;
 
 public class Control implements ActionListener
@@ -35,6 +40,8 @@ public class Control implements ActionListener
         {
             button[i].addActionListener(this);
         }
+
+        loadUsersFromFile();
     }
     /**
      * hasLoggedInUser is a function that checks whether a user is currently logged-in
@@ -624,6 +631,139 @@ public class Control implements ActionListener
         }
 
     /**
+     * saveCurrentUserLibrary is a method that saves the currently logged-in user's library to a text file.
+     */
+    private void saveCurrentUserLibrary()
+    {
+        if(loginUser == null)
+        {
+            return;
+        }
+
+        try
+        {
+            loginUser.getLibrary().saveToFile(getSaveFileName());
+            JOptionPane.showMessageDialog(guiFace, "Library saved successfully.");
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(guiFace, "Error saving library file.");
+        }
+    }
+
+    /**
+     * loadCurrentUserLibrary is a method that loads the currently logged-in user's library from a text file.
+     */
+    private void loadCurrentUserLibrary()
+    {
+        if(loginUser == null)
+        {
+            return;
+        }
+
+        try
+        {
+            loginUser.getLibrary().loadFromFile(getSaveFileName());
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(guiFace, "Error loading library file.");
+        }
+    }
+
+    /**
+     * getUsersFileName is a helper method that returns the file name used for saving user accounts.
+     * @return the file name where user account data is stored
+     */
+    private String getUsersFileName()
+    {
+        return "users.txt";
+    }
+
+    /**
+     * getSaveFileName is a helper method that creates a unique library save file name for the logged-in user.
+     * @return the text file name where the logged-in user's library will be saved
+     */
+    private String getSaveFileName()
+    {
+        return "library_" + loginUser.getUsername() + ".txt";
+    }
+
+    /**
+     * saveUsersToFile is a method that saves all registered user accounts to a text file.
+     */
+    private void saveUsersToFile()
+    {
+        try
+        {
+            PrintWriter writer = new PrintWriter(new FileWriter(getUsersFileName()));
+
+            for(User user : users)
+            {
+                writer.println(cleanFileText(user.getUsername()) + "|" + cleanFileText(user.getPassword()));
+            }
+
+            writer.close();
+        }
+        catch(IOException ex)
+        {
+            JOptionPane.showMessageDialog(guiFace, "Error saving user accounts.");
+        }
+    }
+
+    /**
+     * loadUsersFromFile is a method that loads saved user accounts from a text file.
+     */
+    private void loadUsersFromFile()
+    {
+        try
+        {
+            File file = new File(getUsersFileName());
+
+            if(!file.exists())
+            {
+                return;
+            }
+
+            Scanner reader = new Scanner(file);
+
+            while(reader.hasNextLine())
+            {
+                String line = reader.nextLine();
+                String[] data = line.split("\\|", -1);
+
+                if(data.length >= 2)
+                {
+                    users.add(new User(data[0], data[1]));
+                }
+            }
+
+            reader.close();
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(guiFace, "Error loading user accounts.");
+        }
+    }
+
+    /**
+     * cleanFileText is a helper method that removes characters that may break the text file format.
+     * @param text is the text to be cleaned before saving
+     * @return the cleaned text that can be safely saved in one line
+     */
+    private String cleanFileText(String text)
+    {
+        if(text == null)
+        {
+            return "";
+        }
+
+        return text.replace("|", "/")
+                .replace("\n", " ")
+                .replace("\r", " ");
+    }
+
+    /**
      * actionPerformed is a method that performs specific actions depending on the button pressed by the user
      * @param e the event to be processed through a button object
      */
@@ -664,6 +804,8 @@ public class Control implements ActionListener
             UserInput = textFields[0].getText();
             UserInput2 = textFields[1].getText();
 
+            isTrue = false;
+
             textFields[0].setText("");
             textFields[1].setText("");
 
@@ -693,6 +835,7 @@ public class Control implements ActionListener
                 label[3].setText("Error: User already exists!");
             } else {
                 users.add(new User(UserInput, UserInput2));
+                saveUsersToFile();
                 label[3].setForeground(Color.decode("#219100"));
                 label[3].setText("Success: Created Account!");
             }
@@ -705,6 +848,8 @@ public class Control implements ActionListener
             label[3].setForeground(Color.decode("#C82909"));
             UserInput = textFields[0].getText();
             UserInput2 = String.valueOf(passwordField.getPassword());
+
+            isTrue = false;
 
             textFields[0].setText("");
             passwordField.setText("");
@@ -730,6 +875,7 @@ public class Control implements ActionListener
                 UserInput = null;
             } 
             else if (isTrue) {
+                loadCurrentUserLibrary();
                 label[3].setForeground(Color.decode("#219100"));
                 label[3].setText("Success: Logging in!");
                 label[4].setText("");
@@ -777,6 +923,8 @@ public class Control implements ActionListener
         }
         if (e.getSource() == button[5]) //RETURN TO DESKTOP
         {
+            saveCurrentUserLibrary();
+            saveUsersToFile();
             System.exit(0);
         }
         if (e.getSource() == button[6]) //TO MENU
@@ -826,6 +974,10 @@ public class Control implements ActionListener
         }
         if (e.getSource() == button[8]) //LOG OUT
         {
+            saveCurrentUserLibrary();
+            loginUser = null;
+            isTrue = false;
+
             label[0].setIcon(new ImageIcon("createaccount.jpg"));
             textFields[0].setVisible(false);
             textFields[1].setVisible(false);
