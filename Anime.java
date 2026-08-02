@@ -29,6 +29,7 @@ public class Anime extends MediaEntry {
         this.episodes = episodes;
         this.status = status;
         this.season = season;
+        this.episodeslist = new ArrayList<>();
         incre++;
         this.id = id + incre;
     }
@@ -202,5 +203,24 @@ public class Anime extends MediaEntry {
         {
             status = "Planned";
         }
+    }
+
+    /**
+     * addEpisode is a method that adds an EpisodeChapter object to the anime's episode list.
+     * @param episode is the EpisodeChapter object containing the episode title, description, and length
+     */
+    public void addEpisode(EpisodeChapter episode)
+    {
+        episodeslist.add(episode);
+    }
+
+
+    /**
+     * getEpisodeList is a getter method that returns the list of episode details for the anime.
+     * @return the ArrayList of EpisodeChapter objects containing the anime's episode information
+     */
+    public ArrayList<EpisodeChapter> getEpisodeList()
+    {
+        return episodeslist;
     }
 }
