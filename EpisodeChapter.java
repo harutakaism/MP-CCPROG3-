@@ -12,6 +12,7 @@ public class EpisodeChapter
     {
         this.title = title;
         this.description = desc;
+        this.length = length;
     }
 
     /**
@@ -33,6 +34,17 @@ public class EpisodeChapter
     }
 
     /**
+     * setLength is a setter method that updates the length of an episode or chapter.
+     * For anime episodes, the length represents minutes. For manga/manhwa chapters,
+     * the length may represent pages or chapter length.
+     * @param length is the new length value to be set
+     */
+    public void setLength(int length)
+    {
+        this.length = length;
+    }
+
+    /**
      * getTitle is a getter method that returns the title of the episode
      * @return the string containing the title of the episode
      */
@@ -48,5 +60,14 @@ public class EpisodeChapter
     public String getDescription()
     {
         return description;
+    }
+    
+    /**
+     * getLength is a getter method that returns the length of an episode or chapter.
+     * @return the integer value containing the episode length in minutes or the chapter length/pages
+     */
+     public int getLength()
+    {
+        return length;
     }
 }
