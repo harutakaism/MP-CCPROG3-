@@ -193,6 +193,7 @@ public class Control implements ActionListener
             }
 
             int[] episodes = new int[season];
+            ArrayList<EpisodeChapter> episodeDetails = new ArrayList<>();
 
             for(int i = 0; i < season; i++)
             {
@@ -210,6 +211,42 @@ public class Control implements ActionListener
                 {
                     JOptionPane.showMessageDialog(guiFace, "Episode count cannot be negative.");
                     return;
+                }
+
+                for(int j = 0; j < episodes[i]; j++)
+                {
+                    String episodeTitle = JOptionPane.showInputDialog(guiFace, "Enter title for Season " + (i + 1) + ", Episode " + (j + 1) + ":");
+
+                    if(episodeTitle == null || episodeTitle.trim().isEmpty())
+                    {
+                        JOptionPane.showMessageDialog(guiFace, "Episode title cannot be blank.");
+                        return;
+                    }
+
+                    String episodeDescription = JOptionPane.showInputDialog(guiFace, "Enter description for Season " + (i + 1) + ", Episode " + (j + 1) + ":");
+
+                    if(episodeDescription == null)
+                    {
+                        episodeDescription = "";
+                    }
+
+                    String lengthText = JOptionPane.showInputDialog(guiFace, "Enter episode length in minutes:");
+
+                    if(lengthText == null || lengthText.trim().isEmpty())
+                    {
+                        JOptionPane.showMessageDialog(guiFace, "Episode length cannot be blank.");
+                        return;
+                    }
+
+                    int length = Integer.parseInt(lengthText);
+
+                    if(length < 0)
+                    {
+                        JOptionPane.showMessageDialog(guiFace, "Episode length cannot be negative.");
+                        return;
+                    }
+
+                    episodeDetails.add(new EpisodeChapter(episodeTitle, episodeDescription, length));
                 }
             }
 
@@ -230,13 +267,18 @@ public class Control implements ActionListener
                 return;
             }
 
-            String description = JOptionPane.showInputDialog(guiFace, "Enter description:");
+            String description = JOptionPane.showInputDialog(guiFace, "Enter anime description:");
 
             Anime anime = new Anime(title, studio, episodes, season, status);
 
             if(description != null)
             {
                 anime.setDescription(description);
+            }
+
+            for(int i = 0; i < episodeDetails.size(); i++)
+            {
+                anime.addEpisode(episodeDetails.get(i));
             }
 
             loginUser.getLibrary().addAnime(anime);
