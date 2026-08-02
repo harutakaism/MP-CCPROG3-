@@ -713,10 +713,14 @@ public class Control implements ActionListener
 
             } else if (UserInput.isEmpty()) {
                 label[3].setText("Error: Username cannot be blank!");
+                UserInput2 = null;
 
-            } else if (UserInput2.isEmpty()) {
+            } else if (UserInput2.isEmpty()) 
+            {
                 label[3].setText("Error: Password cannot be blank!");
-            } else if (isTrue) {
+                UserInput = null;
+            } 
+            else if (isTrue) {
                 label[3].setForeground(Color.decode("#219100"));
                 label[3].setText("Success: Logging in!");
                 label[4].setText("");
