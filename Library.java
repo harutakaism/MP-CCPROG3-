@@ -33,7 +33,7 @@ public class Library
         this.movies.add(movie);
     }
     /**
-     * getAllEntriesAsText is a getter method that returns a string with a format of viewing and the data of every 
+     * getAllEntriesAsText is a getter method that returns a string with a format of viewing and the data of every
      * media type. It is the combination of the getAnimeAsText, getMoviesAsText, getMangaAsText
      * @return the String containing the format of the viewing and it's data
      */
@@ -324,12 +324,18 @@ public class Library
         {
             output += "Review: " + manga.getRating().getReview() + "\n";
         }
-        
+
         output += "Description: " + manga.getDescription() + "\n";
         output += "ID: " + manga.getID() + "\n";
 
         return output;
     }
+
+    /**
+     * findEntryByID is a method that has an ID as a parameter to search for the media entry being searched by the user
+     * @param id is the integer value of the media entry ID
+     * @return the media entry with the same ID being searched for
+     */
     public MediaEntry findEntryByID(int id)
     {
         for(Movies item : movies)
@@ -359,6 +365,12 @@ public class Library
         return null;
     }
 
+    /**
+     * deleteEntryByID is a method that returns true or false on the status of the deletion of a media, whether if a 
+     * media exists with the parameter ID. If a media matches the ID in the parameter, the media gets deleted
+     * @param id is the integer value of the ID of a media
+     * @return true if media being deleted was found and removed, false if not found.
+     */
     public boolean deleteEntryByID(int id)
     {
         for(int i = 0; i < movies.size(); i++)
@@ -391,4 +403,3 @@ public class Library
         return false;
     }
 }
-
