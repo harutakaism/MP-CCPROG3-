@@ -127,4 +127,51 @@ public class ManhwaToMangaDesu extends MediaEntry {
     {
         this.description = strNewdescription;
     }
+    public void addReview(String review)
+    {
+        if(status.equals("Completed"))
+        {
+            rating.setReview(review);
+        }
+        else
+        {
+            System.out.println("Only completed entries can have reviews.");
+        }
+    }
+    @Override
+    public void rateMedia(int UserRate)
+    {
+        if("Completed".equals(status))
+        {
+            rating.Rate(UserRate);
+        }
+        else
+        {
+            System.out.println("Only completed entries can be rated.");
+        }
+    }
+    @Override
+    public void setStatus(String strNewstatus)
+    {
+        if(strNewstatus == null)
+        {
+            status = "Planned";
+        }
+        else if(strNewstatus.equalsIgnoreCase("Planned"))
+        {
+            status = "Planned";
+        }
+        else if(strNewstatus.equalsIgnoreCase("In Progress"))
+        {
+            status = "In Progress";
+        }
+        else if(strNewstatus.equalsIgnoreCase("Completed"))
+        {
+            status = "Completed";
+        }
+        else
+        {
+            status = "Planned";
+        }
+    }
 }

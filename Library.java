@@ -231,6 +231,16 @@ public class Library
         output += "Status: " + movie.getStatus() + "\n";
         output += "Duration: " + movie.getDurationinmins() + " minutes\n";
         output += "Rating: " + movie.getRating().GetOverallrating() + "\n";
+
+        if(movie.getRating().getReview() == null || movie.getRating().getReview().trim().isEmpty())
+        {
+            output += "Review: No review yet\n";
+        }
+        else
+        {
+            output += "Review: " + movie.getRating().getReview() + "\n";
+        }
+
         output += "Description: " + movie.getDescription() + "\n";
         output += "ID: " + movie.getID() + "\n";
 
@@ -263,6 +273,16 @@ public class Library
         }
 
         output += "Rating: " + animeEntry.getRating().GetOverallrating() + "\n";
+
+        if(animeEntry.getRating().getReview() == null || animeEntry.getRating().getReview().trim().isEmpty())
+        {
+            output += "Review: No review yet\n";
+        }
+        else
+        {
+            output += "Review: " + animeEntry.getRating().getReview() + "\n";
+        }
+
         output += "Description: " + animeEntry.getDescription() + "\n";
         output += "ID: " + animeEntry.getID() + "\n";
 
@@ -295,10 +315,80 @@ public class Library
         }
 
         output += "Rating: " + manga.getRating().GetOverallrating() + "\n";
+
+        if(manga.getRating().getReview() == null || manga.getRating().getReview().trim().isEmpty())
+        {
+            output += "Review: No review yet\n";
+        }
+        else
+        {
+            output += "Review: " + manga.getRating().getReview() + "\n";
+        }
+        
         output += "Description: " + manga.getDescription() + "\n";
         output += "ID: " + manga.getID() + "\n";
 
         return output;
+    }
+    public MediaEntry findEntryByID(int id)
+    {
+        for(Movies item : movies)
+        {
+            if(item.getID() == id)
+            {
+                return item;
+            }
+        }
+
+        for(Anime item : anime)
+        {
+            if(item.getID() == id)
+            {
+                return item;
+            }
+        }
+
+        for(ManhwaToMangaDesu item : mangadesho)
+        {
+            if(item.getID() == id)
+            {
+                return item;
+            }
+        }
+
+        return null;
+    }
+
+    public boolean deleteEntryByID(int id)
+    {
+        for(int i = 0; i < movies.size(); i++)
+        {
+            if(movies.get(i).getID() == id)
+            {
+                movies.remove(i);
+                return true;
+            }
+        }
+
+        for(int i = 0; i < anime.size(); i++)
+        {
+            if(anime.get(i).getID() == id)
+            {
+                anime.remove(i);
+                return true;
+            }
+        }
+
+        for(int i = 0; i < mangadesho.size(); i++)
+        {
+            if(mangadesho.get(i).getID() == id)
+            {
+                mangadesho.remove(i);
+                return true;
+            }
+        }
+
+        return false;
     }
 }
 

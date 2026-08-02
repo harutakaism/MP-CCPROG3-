@@ -350,6 +350,186 @@ public class Control implements ActionListener
         }
     }
 
+    private void rateEntryThroughDialog(String expectedType)
+    {
+        if(!hasLoggedInUser())
+        {
+            return;
+        }
+
+        try
+        {
+            String idText = JOptionPane.showInputDialog(guiFace, "Enter the ID of the entry you want to rate:");
+
+            if(idText == null || idText.trim().isEmpty())
+            {
+                JOptionPane.showMessageDialog(guiFace, "ID cannot be blank.");
+                return;
+            }
+
+            int id = Integer.parseInt(idText);
+
+            MediaEntry entry = loginUser.getLibrary().findEntryByID(id);
+
+            if(entry == null)
+            {
+                JOptionPane.showMessageDialog(guiFace, "No entry found with that ID.");
+                return;
+            }
+
+            if(!entry.getMediaType().equalsIgnoreCase(expectedType))
+            {
+                JOptionPane.showMessageDialog(guiFace, "That ID is for a " + entry.getMediaType() + ", not " + expectedType + ".");
+                return;
+            }
+
+            if(!entry.getStatus().equals("Completed"))
+            {
+                JOptionPane.showMessageDialog(guiFace, "Only completed entries can be rated or reviewed.");
+                return;
+            }
+
+            String ratingText = JOptionPane.showInputDialog(guiFace, "Enter rating from 1 to 10:");
+
+            if(ratingText == null || ratingText.trim().isEmpty())
+            {
+                JOptionPane.showMessageDialog(guiFace, "Rating cannot be blank.");
+                return;
+            }
+
+            int rating = Integer.parseInt(ratingText);
+
+            if(rating < 1 || rating > 10)
+            {
+                JOptionPane.showMessageDialog(guiFace, "Rating must be from 1 to 10.");
+                return;
+            }
+
+            String review = JOptionPane.showInputDialog(guiFace, "Enter review:");
+
+            entry.rateMedia(rating);
+
+            if(review != null)
+            {
+                entry.addReview(review);
+            }
+
+            JOptionPane.showMessageDialog(guiFace, expectedType + " rated successfully!");
+        }
+        catch(NumberFormatException ex)
+        {
+            JOptionPane.showMessageDialog(guiFace, "Invalid input. Please enter numbers only for ID and rating.");
+        }
+    }
+
+    private void removeEntryThroughDialog()
+    {
+        if(!hasLoggedInUser())
+        {
+            return;
+        }
+
+        try
+        {
+            String idText = JOptionPane.showInputDialog(guiFace, "Enter the ID of the entry you want to remove:");
+
+            if(idText == null || idText.trim().isEmpty())
+            {
+                JOptionPane.showMessageDialog(guiFace, "ID cannot be blank.");
+                return;
+            }
+
+            int id = Integer.parseInt(idText);
+
+            MediaEntry entry = loginUser.getLibrary().findEntryByID(id);
+
+            if(entry == null)
+            {
+                JOptionPane.showMessageDialog(guiFace, "No entry found with that ID.");
+                return;
+            }
+
+            int confirm = JOptionPane.showConfirmDialog(
+                    guiFace,
+                    "Remove this entry?\n\n" + entry.getTitle() + " (" + entry.getMediaType() + ")",
+                    "Confirm Remove",
+                    JOptionPane.YES_NO_OPTION
+            );
+
+            if(confirm == JOptionPane.YES_OPTION)
+            {
+                boolean removed = loginUser.getLibrary().deleteEntryByID(id);
+
+                if(removed)
+                {
+                    JOptionPane.showMessageDialog(guiFace, "Entry removed successfully.");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(guiFace, "Entry could not be removed.");
+                }
+            }
+        }
+        catch(NumberFormatException ex)
+        {
+            JOptionPane.showMessageDialog(guiFace, "Invalid ID. Please enter numbers only.");
+        }
+    }
+
+    private void changeStatusThroughDialog()
+        {
+            if(!hasLoggedInUser())
+            {
+                return;
+            }
+
+            try
+            {
+                String idText = JOptionPane.showInputDialog(guiFace, "Enter the ID of the entry you want to update:");
+
+                if(idText == null || idText.trim().isEmpty())
+                {
+                    JOptionPane.showMessageDialog(guiFace, "ID cannot be blank.");
+                    return;
+                }
+
+                int id = Integer.parseInt(idText);
+
+                MediaEntry entry = loginUser.getLibrary().findEntryByID(id);
+
+                if(entry == null)
+                {
+                    JOptionPane.showMessageDialog(guiFace, "No entry found with that ID.");
+                    return;
+                }
+
+                String[] statusChoices = {"Planned", "In Progress", "Completed"};
+
+                String status = (String) JOptionPane.showInputDialog(
+                        guiFace,
+                        "Choose new status for: " + entry.getTitle(),
+                        "Change Status",
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        statusChoices,
+                        entry.getStatus()
+                );
+
+                if(status == null)
+                {
+                    return;
+                }
+
+                entry.setStatus(status);
+
+                JOptionPane.showMessageDialog(guiFace, "Status updated successfully to: " + status);
+            }
+            catch(NumberFormatException ex)
+            {
+                JOptionPane.showMessageDialog(guiFace, "Invalid ID. Please enter numbers only.");
+            }
+        }
+
     /**
      * actionPerformed is a method that performs specific actions depending on the button pressed by the user
      * @param e the event to be processed through a button object
@@ -738,27 +918,27 @@ public class Control implements ActionListener
         if(e.getSource()==button[22]) //RATE COMPLETED ENTRY: RATE MOVIE
         {
             label[0].setIcon(new ImageIcon("AddTo.jpg"));
-            //for example nothing
+            rateEntryThroughDialog("Movie");
         }
         if(e.getSource()==button[23]) //RATE COMPLETED ENTRY: RATE ANIME
         {
             label[0].setIcon(new ImageIcon("AddTo.jpg"));
-            //for example nothing
+            rateEntryThroughDialog("Anime");
         }
         if(e.getSource()==button[24]) //RATE COMPLETED ENTRY: RATE MANGA
         {
             label[0].setIcon(new ImageIcon("AddTo.jpg"));
-            //for example nothing
+            rateEntryThroughDialog("Manga/Manhwa");
         }
         if(e.getSource()==button[25]) //MODIFY MEDIA: REMOVE MEDIA
         {
             label[0].setIcon(new ImageIcon("Modify.jpg"));
-            //for example nothing
+             removeEntryThroughDialog();
         }
         if(e.getSource()==button[26]) //MODIFY MEDIA: CHANGE STATUS
         {
             label[0].setIcon(new ImageIcon("Modify.jpg"));
-            //for example nothing
+            changeStatusThroughDialog();
         }
 
     }
