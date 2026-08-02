@@ -433,7 +433,10 @@ public class Control implements ActionListener
             JOptionPane.showMessageDialog(guiFace, "Invalid number. Please enter numbers only.");
         }
     }
-
+    /**
+     * rateEntryThroughDialog is a method that allows the user to rate an entry with
+     * @param expectedType is the string containing the media type (Anime, Movie, or Manga)
+     */
     private void rateEntryThroughDialog(String expectedType)
     {
         if(!hasLoggedInUser())
@@ -505,7 +508,10 @@ public class Control implements ActionListener
             JOptionPane.showMessageDialog(guiFace, "Invalid input. Please enter numbers only for ID and rating.");
         }
     }
-
+    /**
+     * removeEntryThroughDialog is a method that allows the user to delete an entry through a dialogue window
+     * by entering the ID of the entry
+     */
     private void removeEntryThroughDialog()
     {
         if(!hasLoggedInUser())
@@ -559,7 +565,10 @@ public class Control implements ActionListener
             JOptionPane.showMessageDialog(guiFace, "Invalid ID. Please enter numbers only.");
         }
     }
-
+     /**
+     * changeStatusThroughDialog is method that changes the status of a media via a dialog window and processes
+     * what the user wants to update to for the status of a specific media type
+     */
     private void changeStatusThroughDialog()
         {
             if(!hasLoggedInUser())
