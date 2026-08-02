@@ -118,7 +118,7 @@ public class ManhwaToMangaDesu extends MediaEntry {
         for(int i = 0; i < volume; i++)
         {
             System.out.println("Number of Chapters in Volume " + (i+1) + ": " + chapter[i]);
-            for(int j = 0; j < chapter[i]; i++)
+            for(int j = 0; j < chapter[i]; j++)
             {
                 System.out.println("Episode " + (j + 1) + ": " + chapters.get(chapterincrement).getTitle());
                 System.out.println("Description of Episode " + (j + 1) + ": " + chapters.get(chapterincrement).getDescription());
@@ -200,5 +200,23 @@ public class ManhwaToMangaDesu extends MediaEntry {
         {
             status = "Planned";
         }
+    }
+
+    /**
+     * addChapter is a method that adds an EpisodeChapter object to the manga/manhwa chapter list.
+     * @param chapterInfo is the EpisodeChapter object containing the chapter title, description, and length/pages
+     */
+    public void addChapter(EpisodeChapter chapterInfo)
+    {
+        chapters.add(chapterInfo);
+    }
+
+    /**
+     * getChapterList is a getter method that returns the list of chapter details for the manga/manhwa.
+     * @return the ArrayList of EpisodeChapter objects containing the manga/manhwa chapter information
+     */
+    public ArrayList<EpisodeChapter> getChapterList()
+    {
+        return chapters;
     }
 }
