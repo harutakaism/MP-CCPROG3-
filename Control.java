@@ -336,6 +336,7 @@ public class Control implements ActionListener
             }
 
             int[] chapters = new int[volume];
+            ArrayList<EpisodeChapter> chapterDetails = new ArrayList<>();
 
             for(int i = 0; i < volume; i++)
             {
@@ -425,7 +426,7 @@ public class Control implements ActionListener
 
             loginUser.getLibrary().addManga(manga);
 
-            JOptionPane.showMessageDialog(guiFace, "Manga/Manhwa added successfully!\nEntry ID: " + manga.getID());
+            JOptionPane.showMessageDialog(guiFace, "Manga/Manhwa/Webtoon added successfully!\nEntry ID: " + manga.getID());
         }
         catch(NumberFormatException ex)
         {

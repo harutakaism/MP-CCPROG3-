@@ -263,12 +263,25 @@ public class Library
         output += "Seasons: " + animeEntry.getSeason() + "\n";
 
         int[] episodes = animeEntry.getEpisodes();
+        ArrayList<EpisodeChapter> episodeList = animeEntry.getEpisodeList();
+        int episodeIndex = 0;
 
         if(episodes != null)
         {
             for(int i = 0; i < animeEntry.getSeason(); i++)
             {
                 output += "Season " + (i + 1) + ": " + episodes[i] + " episode/s\n";
+
+                for(int j = 0; j < episodes[i] && episodeIndex < episodeList.size(); j++)
+                {
+                    EpisodeChapter episode = episodeList.get(episodeIndex);
+
+                    output += "  Episode " + (j + 1) + ": " + episode.getTitle() + "\n";
+                    output += "  Description: " + episode.getDescription() + "\n";
+                    output += "  Length: " + episode.getLength() + " minutes\n";
+
+                    episodeIndex++;
+                }
             }
         }
 
@@ -305,12 +318,25 @@ public class Library
         output += "Volumes: " + manga.getVolume() + "\n";
 
         int[] chapters = manga.getChapter();
+        ArrayList<EpisodeChapter> chapterList = manga.getChapterList();
+        int chapterIndex = 0;
 
         if(chapters != null)
         {
             for(int i = 0; i < manga.getVolume(); i++)
             {
                 output += "Volume " + (i + 1) + ": " + chapters[i] + " chapter/s\n";
+
+                for(int j = 0; j < chapters[i] && chapterIndex < chapterList.size(); j++)
+                {
+                    EpisodeChapter chapterInfo = chapterList.get(chapterIndex);
+
+                    output += "  Chapter " + (j + 1) + ": " + chapterInfo.getTitle() + "\n";
+                    output += "  Description: " + chapterInfo.getDescription() + "\n";
+                    output += "  Length/Pages: " + chapterInfo.getLength() + "\n";
+
+                    chapterIndex++;
+                }
             }
         }
 

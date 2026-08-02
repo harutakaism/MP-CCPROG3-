@@ -2,6 +2,7 @@ public class EpisodeChapter
 {
     private String title;
     private String description;
+    private int length;
 
     /**
      * EpisodeChapter is a constructor with 2 parameters that contain a title and description
