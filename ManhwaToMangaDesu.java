@@ -9,8 +9,8 @@ public class ManhwaToMangaDesu extends MediaEntry {
     private int volume;
     private String description;
     private String status;
-    private int[] chapters;
-    private ArrayList<EpisodeChapter> chapter = new ArrayList<>();
+    private int[] chapter;
+    private ArrayList<EpisodeChapter> chapters = new ArrayList<>();
     int chapterincrement;
 
     /**
@@ -20,9 +20,9 @@ public class ManhwaToMangaDesu extends MediaEntry {
      * @param studio is a string that contains the name of the studio/production of the Manga
      * @param volume is an integer containing the number of volumes a Manga has
      * @param status is a string containing the status (planned, in progress or completed)
-     * @param chapter is an arraylist of chapters 
+     * @param chapter is an array of chapters
      */
-    public ManhwaToMangaDesu(String title, String studio, int volume, String status, ArrayList<EpisodeChapter> chapter)
+    public ManhwaToMangaDesu(String title, String studio, int volume, String status, int[] chapter)
     {
         this.title = title;
         this.studio = studio;
@@ -89,10 +89,10 @@ public class ManhwaToMangaDesu extends MediaEntry {
         return rating;
     }
     /**
-     * getChapter is a getter method that returns the array list of chapters per volume
-     * @return the episode/chapter arraylist containing the number of chapters per volume
+     * getChapter is a getter method that returns the array of chapters per volume
+     * @return the episode/chapter array containing the number of chapters per volume
      */
-    public ArrayList<EpisodeChapter> getChapter()
+    public int[] getChapter()
     {
         return chapter;
     }
@@ -117,9 +117,9 @@ public class ManhwaToMangaDesu extends MediaEntry {
         chapterincrement = 0;
         for(int i = 0; i < volume; i++)
         {
-            System.out.println("Number of Chapters in Volume " + (i+1) + ": " + chapters[i]);
-            System.out.println("Episode " + (i+1) + ": " + chapter.get(chapterincrement).getTitle() );
-            System.out.println("Description of Episode " + (i+1) + ": " + chapter.get(chapterincrement).getDescription() );
+            System.out.println("Number of Chapters in Volume " + (i+1) + ": " + chapter[i]);
+            System.out.println("Episode " + (i+1) + ": " + chapters.get(chapterincrement).getTitle() );
+            System.out.println("Description of Episode " + (i+1) + ": " + chapters.get(chapterincrement).getDescription() );
             chapterincrement++;
         }
         chapterincrement = 0;
