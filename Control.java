@@ -354,6 +354,42 @@ public class Control implements ActionListener
                     JOptionPane.showMessageDialog(guiFace, "Chapter count cannot be negative.");
                     return;
                 }
+
+                for(int j = 0; j < chapters[i]; j++)
+                {
+                    String chapterTitle = JOptionPane.showInputDialog(guiFace, "Enter title for Volume " + (i + 1) + ", Chapter " + (j + 1) + ":");
+
+                    if(chapterTitle == null || chapterTitle.trim().isEmpty())
+                    {
+                        JOptionPane.showMessageDialog(guiFace, "Chapter title cannot be blank.");
+                        return;
+                    }
+
+                    String chapterDescription = JOptionPane.showInputDialog(guiFace, "Enter description for Volume " + (i + 1) + ", Chapter " + (j + 1) + ":");
+
+                    if(chapterDescription == null)
+                    {
+                        chapterDescription = "";
+                    }
+
+                    String lengthText = JOptionPane.showInputDialog(guiFace, "Enter chapter length/pages:");
+
+                    if(lengthText == null || lengthText.trim().isEmpty())
+                    {
+                        JOptionPane.showMessageDialog(guiFace, "Chapter length/pages cannot be blank.");
+                        return;
+                    }
+
+                    int length = Integer.parseInt(lengthText);
+
+                    if(length < 0)
+                    {
+                        JOptionPane.showMessageDialog(guiFace, "Chapter length/pages cannot be negative.");
+                        return;
+                    }
+
+                    chapterDetails.add(new EpisodeChapter(chapterTitle, chapterDescription, length));
+                }
             }
 
             String[] statusChoices = {"Planned", "In Progress", "Completed"};
@@ -373,13 +409,18 @@ public class Control implements ActionListener
                 return;
             }
 
-            String description = JOptionPane.showInputDialog(guiFace, "Enter description:");
+            String description = JOptionPane.showInputDialog(guiFace, "Enter manga/manhwa/webtoon description:");
 
             ManhwaToMangaDesu manga = new ManhwaToMangaDesu(title, studio, volume, status, chapters);
 
             if(description != null)
             {
                 manga.setDescription(description);
+            }
+
+            for(int i = 0; i < chapterDetails.size(); i++)
+            {
+                manga.addChapter(chapterDetails.get(i));
             }
 
             loginUser.getLibrary().addManga(manga);
