@@ -701,7 +701,7 @@ public class Control implements ActionListener
             passwordField.setText("");
 
             for (i = 0; i < users.size(); i++) {
-                if (users.get(i).getUsername().equals(UserInput) && users.get(i).getPassword().equals(UserInput2)) {
+                if (users.get(i).getUsername().equals(UserInput) && users.get(i).getPassword().equals(UserInput2) && !users.get(i).getUsername().isEmpty()) {
                     loginUser = users.get(i);
                     isTrue = true;
                 }
