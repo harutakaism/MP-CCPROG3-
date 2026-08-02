@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Anime extends MediaEntry {
     private final String title;
     private int id = 100000;
@@ -9,6 +11,8 @@ public class Anime extends MediaEntry {
     private int season;
     private int[] episodes;
     private int sum;
+    private ArrayList<EpisodeChapter> episodeslist;
+    private int animeincrement;
 
     /**
      * Anime is a constructor with 5 parameters that instantiate a new object of type Anime
@@ -116,7 +120,14 @@ public class Anime extends MediaEntry {
         for (int i = 0; i < season; i++) {
             System.out.println("Season " + (i + 1) + ":" + episodes[i] + " Episode/s");
             sum += episodes[i];
+            for(int j = 0; j < episodes[i]; j++)
+            {
+                System.out.println("Episode " + (j+1) + ": " + episodeslist.get(animeincrement).getTitle());
+                System.out.println("Description: " + episodeslist.get(animeincrement).getDescription());
+                animeincrement++;
+            }
         }
+        animeincrement = 0;
         System.out.println("Total Episodes: " + sum);
         System.out.println();
         System.out.println("Status: " + status);
@@ -131,6 +142,11 @@ public class Anime extends MediaEntry {
     {
         this.description = strNewdescription;
     }
+    /**
+     * addReview is a method that depending on the status, will allow the user to add a review to the
+     * anime, as long as the user has completed the media before reviewing
+     * @param review is the string that contains what the user would like to give in reviews
+     */
     public void addReview(String review)
     {
         if(status.equals("Completed"))
@@ -142,6 +158,10 @@ public class Anime extends MediaEntry {
             System.out.println("Only completed entries can have reviews.");
         }
     }
+    /**
+     * rateMedia is a method that depending on the status, will allow the user to add a rating from 1-10
+     * @param UserRate is an integer value of what the user would like to rate the specific anime
+     */
     @Override
     public void rateMedia(int UserRate)
     {
@@ -154,6 +174,11 @@ public class Anime extends MediaEntry {
             System.out.println("Only completed entries can be rated.");
         }
     }
+    /**
+     * setStatus is a setter method that sets the status of an anime which could
+     * only be either planned, in progress or completed.
+     * @param strNewstatus is a string containing the new status to be setted
+     */
     @Override
     public void setStatus(String strNewstatus)
     {
